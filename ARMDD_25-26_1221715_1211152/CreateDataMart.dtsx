@@ -1,28 +1,19 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="12/30/2025 5:59:43 PM"
+  DTS:CreationDate="12/29/2025 8:44:05 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="CPU_JORGE_CRUZ"
   DTS:CreatorName="CPU_JORGE_CRUZ\jorge"
-  DTS:DTSID="{B8213CCF-AC52-4C17-9B74-D5719BD92D3E}"
+  DTS:DTSID="{1FA5077A-6315-4B68-BF3E-BEC586F60787}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.2"
   DTS:LocaleID="2070"
-  DTS:ObjectName="CreateDataMart"
+  DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{2F742C36-08DD-4C23-AF5F-40555EDF27C4}">
+  DTS:VersionGUID="{CA491677-8899-4745-8A08-AB929142F186}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
   <DTS:Executables />
-  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
-<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
-<!--If you manually edit this section and make a mistake, you can delete it. -->
-<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
-<Objects
-  Version="8">
-  <!--Each node below will contain properties that do not affect runtime behavior.-->
-</Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>

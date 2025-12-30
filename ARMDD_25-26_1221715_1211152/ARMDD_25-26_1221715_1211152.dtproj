@@ -26,62 +26,26 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">CPU_JORGE_CRUZ</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAkuGXM5cDMU2OTkHKwSGkqAAAAAACAAAAAAAQZgAAAAEAACAAAACScCC92FPyyKqffQa9ASQAWMhSpHPqguCamUlnH0j2ogAAAAAOgAAAAAIAACAAAAA4mCFVI0LDoH7R8BDz4sFY0CA9bxoNmHK9dRCttTShS5AAAADuSTEt1vJwVMcbBF6T61u/sd7NSzXdIPzrWXnfD7Obkkxdq7qqOW06J20+calgusn0FA2hIxeIsHEjl9IZ28dhVbxEnlJMoKf8kzRcFavc/18GBAqzU18HhxgzFpyVnnofdYOTU4bS+tiOa3VmpcbftWUPlCLzMOv0lyYEuInf5xQmMua2WQLUA5cuXFWlg+1AAAAAU9VPDCCugkavwyc1VPOuDWOD0ZyxKhfHfeCZ8O5aRfPtVafAQfYnFXBot+Nz7tzKGgnfFS+cmoA+hNOF/PC7Bw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAkuGXM5cDMU2OTkHKwSGkqAAAAAACAAAAAAAQZgAAAAEAACAAAADTL/VNymd7SvUFMqgDw5Nrh1VTd0YNnxNuyUUFiQ2VMQAAAAAOgAAAAAIAACAAAAC89l3dzVAeWiRoyoCbTdFBUt5Arq7cwyb0WSHzlZnotZAAAADmTlA+rWsY1zvWrTNdbNoxmMhitYRTr12RPtrumgoE2gzTdTKPj2NgnbskWmB7ntzJKL4lEZVXbBPsyDwBfn64aCMXcEENRHlFRrKB5Lw9B9V9bVzPfY9+T7M32hBk7vY0BXHEv2hmMz+FxPYViaj9876l1d+w24CegoyRTv67NjLF51qkx/K81mHs5M1gTYdAAAAAsrfgz5byHwcEwTV8h/mY6nSopPuO5ImcV1ezCh6Clil83MNv4RLmVc+AvV8SCY4y4wAjLgPA6qCY9Z/87wqvgw==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
-          <SSIS:Package SSIS:Name="Main.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="CreateDataMart.dtsx" SSIS:EntryPoint="1" />
-          <SSIS:Package SSIS:Name="CreateStagingArea.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Package.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers />
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters />
           <SSIS:PackageInfo>
-            <SSIS:PackageMetaData SSIS:Name="Main.dtsx">
+            <SSIS:PackageMetaData SSIS:Name="Package.dtsx">
               <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{6AF2F7AA-919D-40E8-9E09-10ADEFA16DF0}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Main</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{C964E667-C00E-49BF-9470-3A2934C1B1F5}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="CreateDataMart.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{B8213CCF-AC52-4C17-9B74-D5719BD92D3E}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">CreateDataMart</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionComments">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{2F742C36-08DD-4C23-AF5F-40555EDF27C4}</SSIS:Property>
-                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
-                <SSIS:Property SSIS:Name="Description">
-                </SSIS:Property>
-                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
-              </SSIS:Properties>
-              <SSIS:Parameters />
-            </SSIS:PackageMetaData>
-            <SSIS:PackageMetaData SSIS:Name="CreateStagingArea.dtsx">
-              <SSIS:Properties>
-                <SSIS:Property SSIS:Name="ID">{350A1133-A2FD-4517-87BC-F489C3DC1042}</SSIS:Property>
-                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="ID">{8C7CE20B-5B55-4200-9D4E-A8F9ED7DBF0A}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{A4E09842-7608-4BFA-BE6F-B1021EB20D99}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{DCF5EE09-0383-4C78-A480-B577B91B18E7}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
