@@ -11,8 +11,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="CreateStagingArea"
   DTS:PackageType="5"
-  DTS:VersionBuild="13"
-  DTS:VersionGUID="{032F1183-C067-489F-B65C-8113A68E9E56}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{C1B8E176-ADD9-4A57-A4D2-2184923C1955}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -98,7 +98,7 @@
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="C:\Temp\ARMDD_25-26_1221715_1211152\SQLScripts\StagingArea" />
+              Folder="C:\Temp\ARMDD_Project\SQLScripts\StagingArea" />
             <FEFEProperty
               FileSpec="*.sql" />
             <FEFEProperty
@@ -132,8 +132,8 @@
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{AC503E37-7E3D-4E22-AF2C-68FAA5A5C93D}"
-          DTS:ObjectName="{AC503E37-7E3D-4E22-AF2C-68FAA5A5C93D}"
+          DTS:DTSID="{25CCC78F-98F7-4614-AF73-E72C5601EA05}"
+          DTS:ObjectName="{25CCC78F-98F7-4614-AF73-E72C5601EA05}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::SAScriptFileName" />
       </DTS:ForEachVariableMappings>

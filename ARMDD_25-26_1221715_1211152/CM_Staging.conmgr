@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="(local).PlusOrders_StagingArea"
+  DTS:DTSID="{94DC0787-8844-4399-9244-DB8E3193531D}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=(local);Initial Catalog=PlusOrders_StagingArea;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-ARMDD_25-26_1221715_1211152-{94DC0787-8844-4399-9244-DB8E3193531D}(local).PlusOrders_StagingArea;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
