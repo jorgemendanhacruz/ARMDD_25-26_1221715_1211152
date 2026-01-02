@@ -7,6 +7,7 @@ BEGIN
         [IsActive]           [tinyint]      NULL,
         [AvailablePortal]    [tinyint]      NULL,
         [CategoryName]       [varchar](50)  NULL,
+        [BoxName]       [varchar](50)  NULL,
         [Gender]             [char](1)      NULL,
         [EffectiveDate]      [date]         NULL,
         [ExpiredDate]        [date]         NULL,
