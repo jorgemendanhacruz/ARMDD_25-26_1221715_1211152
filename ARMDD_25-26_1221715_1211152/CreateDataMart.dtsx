@@ -11,35 +11,11 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="CreateDataMart"
   DTS:PackageType="5"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{733F64E6-AA0A-4BC8-ABD3-F7FD6FC2B3BF}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{B02FDB55-C6E9-42F0-86ED-E4525026EDD5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[(local).master]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{591BE1E5-BF84-4ED6-9234-CABFADFC2D26}"
-      DTS:ObjectName="(local).master">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=(local);Initial Catalog=master;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-CreateDataMart-{591BE1E5-BF84-4ED6-9234-CABFADFC2D26}(local).master;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[(local).PlusOrders_DataMart]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}"
-      DTS:ObjectName="(local).PlusOrders_DataMart">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=(local);Initial Catalog=PlusOrders_DataMart;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-CreateDataMart-{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}(local).PlusOrders_DataMart;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[Create DM Tables]"
       DTS:CreationName="FILE"
