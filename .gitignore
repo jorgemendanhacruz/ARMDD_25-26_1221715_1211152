@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+#ProjectParamsFile
+ARMDD_25-26_1221715_1211152/Project.params

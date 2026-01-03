@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="(local).master"
+  DTS:DTSID="{591BE1E5-BF84-4ED6-9234-CABFADFC2D26}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=(local);Initial Catalog=master;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-CreateDataMart-{591BE1E5-BF84-4ED6-9234-CABFADFC2D26}(local).master;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
