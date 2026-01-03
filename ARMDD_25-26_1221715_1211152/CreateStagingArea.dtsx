@@ -11,8 +11,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="CreateStagingArea"
   DTS:PackageType="5"
-  DTS:VersionBuild="14"
-  DTS:VersionGUID="{C1B8E176-ADD9-4A57-A4D2-2184923C1955}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{3C3F7B4A-5AAC-41F8-B572-FE917681F04E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -98,7 +98,7 @@
         <DTS:ObjectData>
           <ForEachFileEnumeratorProperties>
             <FEFEProperty
-              Folder="C:\Temp\ARMDD_Project\SQLScripts\StagingArea" />
+              Folder="C:\Temp\ARMDD_25-26_1221715_1211152\SQLScripts\StagingArea" />
             <FEFEProperty
               FileSpec="*.sql" />
             <FEFEProperty
@@ -132,8 +132,8 @@
       <DTS:ForEachVariableMappings>
         <DTS:ForEachVariableMapping
           DTS:CreationName=""
-          DTS:DTSID="{25CCC78F-98F7-4614-AF73-E72C5601EA05}"
-          DTS:ObjectName="{25CCC78F-98F7-4614-AF73-E72C5601EA05}"
+          DTS:DTSID="{0E0A01FB-55B8-41DE-95B2-5A94F1734942}"
+          DTS:ObjectName="{0E0A01FB-55B8-41DE-95B2-5A94F1734942}"
           DTS:ValueIndex="0"
           DTS:VariableName="User::SAScriptFileName" />
       </DTS:ForEachVariableMappings>
@@ -168,7 +168,7 @@
         <NodeLayout
           Size="160.8,41.6"
           Id="Package\Foreach Staging Create Tables\Execute SA Script"
-          TopLeft="52.8571432676851,29.8823527186387" />
+          TopLeft="52.1428575518787,29.8823527186387" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
