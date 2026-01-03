@@ -7,6 +7,6 @@
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"
       DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=(local);Initial Catalog=master;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-CreateDataMart-{591BE1E5-BF84-4ED6-9234-CABFADFC2D26}(local).master;Auto Translate=False;" />
+      DTS:ConnectionString="Data Source=(local);Initial Catalog=master;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-CreateDataMart-{591BE1E5-BF84-4ED6-9234-CABFADFC2D26}(local).master;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>

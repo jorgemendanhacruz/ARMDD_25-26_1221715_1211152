@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">CPU_JORGE_CRUZ</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAkuGXM5cDMU2OTkHKwSGkqAAAAAACAAAAAAAQZgAAAAEAACAAAABZxKnMWCa69jWLFlwdbwzwqNnk300Wt7yAeWybq4VzlwAAAAAOgAAAAAIAACAAAAB9nlQ0QnaRQxM3Ai9oiIPjO54RncoLA1l4YmHWVNtSKZAAAADhaHzsqGRJqf5lPxp50GRapuPh80J1QpXc6Aw56sXL+2sdGkho6+qwImHGuQS0iV+zC51geTELmO+uBbrSDtjSzahKIQKOSaNx5frjfKWenndGRXyujwFNmR2GbvCu4NhVNvndaHW6CKPPF4b9+kjTROhkRs1nyGBfDruz+gMXv09PqSM5HwkOKm/5C6OM1WRAAAAAQDb1uqZldfH8WXMDtNBcC+1yv3rvSt2D409AFWEP54kyeHP+6oEyABJcQVkavSCYK9Mh82DPssR1o72QgZ5YEw==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAkuGXM5cDMU2OTkHKwSGkqAAAAAACAAAAAAAQZgAAAAEAACAAAAD5xs42pzp7YqlmZJ3whys8/QdlP8ccr+psYDRIb6AUswAAAAAOgAAAAAIAACAAAACpK0wSt0X+HjEUvdswXC1KqrEkWxwBYPB3m5MS1Tbd/JAAAABHipzKtLV4XLHoNbpGY3AtxYLpVadMtMJVLFujM86btQ9sAgAGe3DMcD1gMWBCySRYuACc+H0SlkAuc/E0F6QuKVEO05F+3TfnB6qLZGuiDKXmFZBSTDXvTS+tcihgy0zv7qbevnooHNx8ha6MPZUTz9RsKzMxYV8t2pVkIaj4lbHnIM/arBNFCjTtgwlu5FxAAAAAkFYqilGiqTEr7UYi2G3+nvznKllGGGO3kzmWMPkKm18tDFtgIipwFHD7tFN0ChMsuENbpNvyAGIioqkB7jt5SQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -1184,8 +1184,6 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">
-                    </SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -1278,16 +1276,47 @@
                 <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">22</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{4D5AB8D6-2784-4019-9C96-E930352E95AE}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{101B25AC-F4C4-4EFB-949D-D97A7ABAE034}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
               </SSIS:Properties>
-              <SSIS:Parameters />
+              <SSIS:Parameters>
+                <SSIS:Parameter SSIS:Name="CM.FillMissingValuesForCountries.sql.ConnectByProxy">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.FillMissingValuesForCountries.sql.ConnectionString">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">C:\Temp\ARMDD_25-26_1221715_1211152\SQLScripts\StagingArea\FillMissingValuesForCountries.sql</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+              </SSIS:Parameters>
             </SSIS:PackageMetaData>
             <SSIS:PackageMetaData SSIS:Name="LoadCurrencyDimensionsAndFactTable.dtsx">
               <SSIS:Properties>
