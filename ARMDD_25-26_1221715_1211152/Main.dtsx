@@ -11,8 +11,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="Main"
   DTS:PackageType="5"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{45A6FF78-BB23-4EB3-9079-6C25006F160B}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{2BF01D69-DB11-4263-ABEA-E58C22962CF8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -82,6 +82,23 @@
         <ExecutePackageTask>
           <UseProjectReference>True</UseProjectReference>
           <PackageName>LoadAuxDimensions.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LoadBigDimensions"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{7BCA39BE-5572-4A76-AAFA-E50FC4550E42}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LoadBigDimensions"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>LoadBigDimensions.dtsx</PackageName>
         </ExecutePackageTask>
       </DTS:ObjectData>
     </DTS:Executable>
@@ -161,6 +178,14 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 4"
       DTS:To="Package\LoadCurrencyAndFactCurrency" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{22534573-754A-4E86-A7F7-6B856F232FA9}"
+      DTS:From="Package\LoadCurrencyAndFactCurrency"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\LoadBigDimensions" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -190,6 +215,10 @@
           Size="172.8,41.6"
           Id="Package\LoadAuxDimensions"
           TopLeft="552.85714403403,146.823529283068" />
+        <NodeLayout
+          Size="222.4,41.6"
+          Id="Package\LoadCurrencyAndFactCurrency"
+          TopLeft="39.285714369343,245.470588020129" />
         <NodeLayout
           Size="199.2,41.6"
           Id="Package\LoadTemporalDimensions"
@@ -294,10 +323,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="222.4,41.6"
-          Id="Package\LoadCurrencyAndFactCurrency"
-          TopLeft="39.285714369343,245.470588020129" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
           TopLeft="639.25714403403,188.423529283068">
@@ -324,6 +349,32 @@
                     Point3="-488.771429664687,32.5235293685307" />
                   <mssgle:LineSegment
                     End="-488.771429664687,49.5470587370615" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\LoadBigDimensions"
+          TopLeft="339.285715007965,252.352940955273" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="261.685714369343,269.711764487701">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="77.6000006386216,0"
+              Start="0,0"
+              End="70.1000006386216,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="70.1000006386216,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
