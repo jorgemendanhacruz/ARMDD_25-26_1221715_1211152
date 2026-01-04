@@ -11,8 +11,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="LoadBigDimensions"
   DTS:PackageType="5"
-  DTS:VersionBuild="49"
-  DTS:VersionGUID="{2D47FF3D-2FFD-4515-A65D-44850C5455DA}">
+  DTS:VersionBuild="50"
+  DTS:VersionGUID="{8EDDC473-FA49-445D-8CF0-8768710A82BE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -5342,27 +5342,27 @@ where [refTable].[CategoryID] = ?</property>
                   name="Data Conversion Output"
                   startId="Package\Load Big Dimensions\Load DimProduct\Data Conversion Description.Outputs[Data Conversion Output]" />
                 <path
-                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output4]"
+                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Insert Into DimProduct.Inputs[OLE DB Destination Input]"
                   name="Derived Column Output"
                   startId="Package\Load Big Dimensions\Load DimProduct\Set New Record Effective Date.Outputs[Derived Column Output]" />
                 <path
-                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output]"
+                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output1]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Data Conversion Description.Inputs[Data Conversion Input]"
                   name="Derived Column Output"
                   startId="Package\Load Big Dimensions\Load DimProduct\Transformed Active, AvailbalePortal and Description.Outputs[Derived Column Output]" />
                 <path
-                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output3]"
+                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output2]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Expire Old Record.Inputs[OLE DB Command Input]"
                   name="Derived Column Output"
                   startId="Package\Load Big Dimensions\Load DimProduct\Set Old Record Expired Date.Outputs[Derived Column Output]" />
                 <path
-                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output2]"
+                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output3]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Union All 1.Inputs[Union All Input 2]"
                   name="Derived Column Output"
                   startId="Package\Load Big Dimensions\Load DimProduct\Box &quot;Unknown&quot;.Outputs[Derived Column Output]" />
                 <path
-                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output1]"
+                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output4]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Union All Category.Inputs[Union All Input 2]"
                   name="Derived Column Output"
                   startId="Package\Load Big Dimensions\Load DimProduct\Category &quot;Unknown&quot;.Outputs[Derived Column Output]" />
@@ -5373,21 +5373,21 @@ where [refTable].[CategoryID] = ?</property>
                   startId="Package\Load Big Dimensions\Load DimProduct\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]" />
                 <path
                   refId="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output1]"
-                  endId="Package\Load Big Dimensions\Load DimProduct\Union All 1.Inputs[Union All Input 1]"
-                  name="Lookup Match Output"
-                  startId="Package\Load Big Dimensions\Load DimProduct\Lookup Box.Outputs[Lookup Match Output]" />
-                <path
-                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Union All Category.Inputs[Union All Input 1]"
                   name="Lookup Match Output"
                   startId="Package\Load Big Dimensions\Load DimProduct\Lookup Category.Outputs[Lookup Match Output]" />
                 <path
-                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup No Match Output1]"
+                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output]"
+                  endId="Package\Load Big Dimensions\Load DimProduct\Union All 1.Inputs[Union All Input 1]"
+                  name="Lookup Match Output"
+                  startId="Package\Load Big Dimensions\Load DimProduct\Lookup Box.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup No Match Output]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Box &quot;Unknown&quot;.Inputs[Derived Column Input]"
                   name="Lookup No Match Output"
                   startId="Package\Load Big Dimensions\Load DimProduct\Lookup Box.Outputs[Lookup No Match Output]" />
                 <path
-                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup No Match Output]"
+                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup No Match Output1]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Category &quot;Unknown&quot;.Inputs[Derived Column Input]"
                   name="Lookup No Match Output"
                   startId="Package\Load Big Dimensions\Load DimProduct\Lookup Category.Outputs[Lookup No Match Output]" />
@@ -5407,17 +5407,17 @@ where [refTable].[CategoryID] = ?</property>
                   name="OLE DB Source Output"
                   startId="Package\Load Big Dimensions\Load DimProduct\Products.Outputs[OLE DB Source Output]" />
                 <path
-                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 12]"
-                  endId="Package\Load Big Dimensions\Load DimProduct\Set New Record Effective Date.Inputs[Derived Column Input]"
-                  name="Union All Output 1"
-                  startId="Package\Load Big Dimensions\Load DimProduct\Union All.Outputs[Union All Output 1]" />
-                <path
                   refId="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 11]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
                   name="Union All Output 1"
                   startId="Package\Load Big Dimensions\Load DimProduct\Union All 1.Outputs[Union All Output 1]" />
                 <path
                   refId="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 1]"
+                  endId="Package\Load Big Dimensions\Load DimProduct\Set New Record Effective Date.Inputs[Derived Column Input]"
+                  name="Union All Output 1"
+                  startId="Package\Load Big Dimensions\Load DimProduct\Union All.Outputs[Union All Output 1]" />
+                <path
+                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 12]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Lookup Box.Inputs[Lookup Input]"
                   name="Union All Output 1"
                   startId="Package\Load Big Dimensions\Load DimProduct\Union All Category.Outputs[Union All Output 1]" />
@@ -5941,7 +5941,7 @@ where [refTable].[CategoryID] = ?</property>
           Id="Package\Load Big Dimensions\Load DimProduct\Data Conversion Description"
           TopLeft="136.9,208.7" />
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output]"
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output1]"
           TopLeft="242.5,148.7">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -5993,7 +5993,7 @@ where [refTable].[CategoryID] = ?</property>
           Id="Package\Load Big Dimensions\Load DimProduct\Category &quot;Unknown&quot;"
           TopLeft="5.50000000000006,411.9" />
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup No Match Output]"
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup No Match Output1]"
           TopLeft="217.566666666667,351.9">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -6037,7 +6037,7 @@ where [refTable].[CategoryID] = ?</property>
           Id="Package\Load Big Dimensions\Load DimProduct\Box &quot;Unknown&quot;"
           TopLeft="29.9000000000001,716.699999999999" />
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup No Match Output1]"
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup No Match Output]"
           TopLeft="221.7,656.699999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -6081,7 +6081,7 @@ where [refTable].[CategoryID] = ?</property>
           Id="Package\Load Big Dimensions\Load DimProduct\Union All Category"
           TopLeft="159.7,513.5" />
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output]"
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output1]"
           TopLeft="268.1,351.9">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -6105,7 +6105,7 @@ where [refTable].[CategoryID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output1]"
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output4]"
           TopLeft="93.5000000000001,453.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -6139,7 +6139,7 @@ where [refTable].[CategoryID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 1]"
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 12]"
           TopLeft="242.5,555.1">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -6165,7 +6165,7 @@ where [refTable].[CategoryID] = ?</property>
           Id="Package\Load Big Dimensions\Load DimProduct\Union All 1"
           TopLeft="177.7,818.299999999999" />
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output1]"
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output]"
           TopLeft="263.033333333333,656.699999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -6189,7 +6189,7 @@ where [refTable].[CategoryID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output2]"
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output3]"
           TopLeft="105.5,758.299999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -6289,7 +6289,7 @@ where [refTable].[CategoryID] = ?</property>
           Id="Package\Load Big Dimensions\Load DimProduct\Expire Old Record"
           TopLeft="17.1000000000001,1123.1" />
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output3]"
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output2]"
           TopLeft="135.1,1063.1">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -6401,7 +6401,7 @@ where [refTable].[CategoryID] = ?</property>
           Id="Package\Load Big Dimensions\Load DimProduct\Set New Record Effective Date"
           TopLeft="161.3,1326.3" />
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 12]"
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 1]"
           TopLeft="242.5,1266.3">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -6439,7 +6439,7 @@ where [refTable].[CategoryID] = ?</property>
           Id="Package\Load Big Dimensions\Load DimProduct\Insert Into DimProduct"
           TopLeft="161.3,1427.9" />
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output4]"
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output]"
           TopLeft="272.5,1367.9">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -6476,6 +6476,29 @@ where [refTable].[CategoryID] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
+    design-time-name="Package\Load Big Dimensions\Load DimProduct\Lookup Category">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Load Big Dimensions\Load DimProduct\Products">
     <Properties>
       <Property>
@@ -6489,12 +6512,12 @@ where [refTable].[CategoryID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Big Dimensions\Load DimProduct\Lookup Category">
+    design-time-name="Package\Load Big Dimensions\Load DimProduct\Lookup Box">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -6504,7 +6527,7 @@ where [refTable].[CategoryID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -6512,25 +6535,15 @@ where [refTable].[CategoryID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Big Dimensions\Load DimProduct\Lookup Box">
+    design-time-name="Package\Load Big Dimensions\Load DimProduct\Insert Into DimProduct">
     <Properties>
       <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string"></Value>
+        <Name>DataSourceViewID</Name>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -6601,19 +6614,6 @@ where [refTable].[CategoryID] = ?</property>
   &lt;DateVariable&gt;System::CreationDate&lt;/DateVariable&gt;
   &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
 &lt;/SCDWizardMetadata&gt;</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Big Dimensions\Load DimProduct\Insert Into DimProduct">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

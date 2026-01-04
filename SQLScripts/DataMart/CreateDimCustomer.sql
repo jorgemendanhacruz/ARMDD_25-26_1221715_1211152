@@ -1,7 +1,7 @@
 IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'DimCustomer')
 BEGIN
     CREATE TABLE [dbo].[DimCustomer](
-        [CustomerKey]      [int]         NOT NULL,
+        [CustomerKey]      [int] IDENTITY(1,1)  NOT NULL,
         [CustomerID]       [int]         NOT NULL,
         [CustomerBirthday] [date]        NULL,
         [Gender]           [char](1)     NULL,

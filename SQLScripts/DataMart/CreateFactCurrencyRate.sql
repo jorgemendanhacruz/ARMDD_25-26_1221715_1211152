@@ -4,7 +4,7 @@ BEGIN
         [ConversionDateKey]             [int]           NOT NULL,
         [SourceCurrencyKey]             [int]           NOT NULL,
         [DestinationCurrencyKey]        [int]           NOT NULL,
-        [SourceCurrencyExchangeRate]    [decimal](10,4) NULL,
+        [SourceDestinationExchangeRate]    [decimal](10,4) NULL,
         [DestinationSourceExchangeRate] [decimal](10,4) NULL,
         CONSTRAINT [PK_FactCurrencyRate] PRIMARY KEY CLUSTERED
         (

@@ -1,7 +1,7 @@
 IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'DimProduct')
 BEGIN
     CREATE TABLE [dbo].[DimProduct](
-        [ProductKey]         [int]          NOT NULL,
+        [ProductKey]         [int] IDENTITY(1,1)         NOT NULL,
         [ProductID]          [int]          NOT NULL,
         [ProductDescription] [varchar](255) NULL,
         [IsActive]           [tinyint]      NULL,

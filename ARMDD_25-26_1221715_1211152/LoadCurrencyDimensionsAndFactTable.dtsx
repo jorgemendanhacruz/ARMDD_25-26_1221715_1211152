@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="1/2/2026 11:13:32 PM"
@@ -11,9 +11,2275 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionGUID="{63D1222B-E8B7-460E-865A-F5CBFF28674C}">
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{F74D15EB-6BC4-450F-A886-46EF51A47D7D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:Variables />
-  <DTS:Executables />
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CurrencyRates]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{D00A6247-8E67-45C9-A905-94418FC07964}"
+      DTS:ObjectName="CurrencyRates">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2070"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Temp\ARMDD_25-26_1221715_1211152\Files\CurrencyRates.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SourceCurrency"
+              DTS:DTSID="{5D369A82-037D-40A6-99C1-BDF7E569A648}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DestinationCurrency"
+              DTS:DTSID="{789EC70D-6E74-4B9A-8685-817C4F695CD8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SourceDestinationExchangeRate"
+              DTS:DTSID="{1003E32C-48A5-44E6-8C82-2DEE99154858}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DestinationSourceExchangeRate"
+              DTS:DTSID="{61633063-7F7C-4AC1-B8E8-3ACD5C627DFB}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{1E9ADA4A-F66F-455A-B5AC-5F9458CB16B3}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2070"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Temp\ARMDD_25-26_1221715_1211152\Files\output.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SourceCurrency"
+              DTS:DTSID="{A3CF6826-2DC5-481E-8B33-3B3A0F4D5F26}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DestinationCurrency"
+              DTS:DTSID="{4931EC07-002E-4641-9F45-17270A04EB65}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SourceDestinationExchangeRate"
+              DTS:DTSID="{C98F2069-E981-40C4-BD05-79CCD4724FC1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DestinationSourceExchangeRate"
+              DTS:DTSID="{0EB16818-592F-4575-BA1A-65D8FB1AA4B1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Lookup SourceCurrency.CurrencyKey"
+              DTS:DTSID="{21A78D7F-F593-44F6-BDD8-EE124E1B6461}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Lookup DesctinationCurrency.CurrencyKey"
+              DTS:DTSID="{8F88D641-9367-4B01-8F3D-0FDB9718FDD0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:DataType="133"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Today"
+              DTS:DTSID="{F62BF21A-058E-406A-ACCC-9B27468A1289}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="DateKey"
+              DTS:DTSID="{5ADE8C80-2D72-4C63-B423-C66C997D62F2}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{41EE5AA1-CFF6-4BE4-97B7-D1579F767FDE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DimCurrencyRows">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DimCurrency"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{12748CA9-D7C3-4982-A159-A73ABE071EE6}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DimCurrency">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\DimCurrency\IsDimCurrencyEmpty?"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{89FA9788-D61D-4A30-97CC-FB3EF33DD1BC}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="IsDimCurrencyEmpty?"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="DimCurrency"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[DimCurrency]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Connections[OleDbConnection]"
+                      connectionManagerID="{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[(local).PlusOrders_DataMart]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Output].Columns[CurrencyKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Output].ExternalColumns[CurrencyKey]"
+                          lineageId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Output].Columns[CurrencyKey]"
+                          name="CurrencyKey"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Output].Columns[CurrencyCode]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Output].ExternalColumns[CurrencyCode]"
+                          length="3"
+                          lineageId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Output].Columns[CurrencyCode]"
+                          name="CurrencyCode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Output].Columns[CurrencyName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Output].ExternalColumns[CurrencyName]"
+                          length="50"
+                          lineageId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Output].Columns[CurrencyName]"
+                          name="CurrencyName"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Output].ExternalColumns[CurrencyKey]"
+                          dataType="i4"
+                          name="CurrencyKey" />
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Output].ExternalColumns[CurrencyCode]"
+                          dataType="wstr"
+                          length="3"
+                          name="CurrencyCode" />
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Output].ExternalColumns[CurrencyName]"
+                          dataType="wstr"
+                          length="50"
+                          name="CurrencyName" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Error Output].Columns[CurrencyKey]"
+                          dataType="i4"
+                          lineageId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Error Output].Columns[CurrencyKey]"
+                          name="CurrencyKey" />
+                        <outputColumn
+                          refId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Error Output].Columns[CurrencyCode]"
+                          dataType="wstr"
+                          length="3"
+                          lineageId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Error Output].Columns[CurrencyCode]"
+                          name="CurrencyCode" />
+                        <outputColumn
+                          refId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Error Output].Columns[CurrencyName]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Error Output].Columns[CurrencyName]"
+                          name="CurrencyName" />
+                        <outputColumn
+                          refId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\DimCurrency\IsDimCurrencyEmpty?\Row Count"
+                  componentClassID="Microsoft.RowCount"
+                  contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+                  name="Row Count">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable to hold the row count."
+                      name="VariableName">User::DimCurrencyRows</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\DimCurrency\IsDimCurrencyEmpty?\Row Count.Inputs[Row Count Input 1]"
+                      hasSideEffects="true"
+                      name="Row Count Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\DimCurrency\IsDimCurrencyEmpty?\Row Count.Outputs[Row Count Output 1]"
+                      name="Row Count Output 1"
+                      synchronousInputId="Package\DimCurrency\IsDimCurrencyEmpty?\Row Count.Inputs[Row Count Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\DimCurrency\IsDimCurrencyEmpty?.Paths[OLE DB Source Output]"
+                  endId="Package\DimCurrency\IsDimCurrencyEmpty?\Row Count.Inputs[Row Count Input 1]"
+                  name="OLE DB Source Output"
+                  startId="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\DimCurrency\LoadDimCurrency"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{7767ACEF-BB0D-4376-82A6-4F5FD76299DA}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LoadDimCurrency"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\DimCurrency\LoadDimCurrency\Currencies"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Currencies"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Currencies]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\DimCurrency\LoadDimCurrency\Currencies.Connections[OleDbConnection]"
+                      connectionManagerID="{94DC0787-8844-4399-9244-DB8E3193531D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[(local).PlusOrders_StagingArea]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].Columns[CurrencyID]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].ExternalColumns[CurrencyID]"
+                          length="3"
+                          lineageId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].Columns[CurrencyID]"
+                          name="CurrencyID"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].Columns[CurrencyName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].ExternalColumns[CurrencyName]"
+                          length="20"
+                          lineageId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].Columns[CurrencyName]"
+                          name="CurrencyName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].Columns[CurrencySymbol]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].ExternalColumns[CurrencySymbol]"
+                          length="3"
+                          lineageId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].Columns[CurrencySymbol]"
+                          name="CurrencySymbol"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].Columns[CreateDate]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].ExternalColumns[CreateDate]"
+                          lineageId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].Columns[CreateDate]"
+                          name="CreateDate"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].Columns[LastUpdateDate]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].ExternalColumns[LastUpdateDate]"
+                          lineageId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].Columns[LastUpdateDate]"
+                          name="LastUpdateDate"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].ExternalColumns[CurrencyID]"
+                          dataType="wstr"
+                          length="3"
+                          name="CurrencyID" />
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].ExternalColumns[CurrencyName]"
+                          dataType="wstr"
+                          length="20"
+                          name="CurrencyName" />
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].ExternalColumns[CurrencySymbol]"
+                          dataType="wstr"
+                          length="3"
+                          name="CurrencySymbol" />
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].ExternalColumns[CreateDate]"
+                          dataType="dbDate"
+                          name="CreateDate" />
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].ExternalColumns[LastUpdateDate]"
+                          dataType="dbDate"
+                          name="LastUpdateDate" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Error Output].Columns[CurrencyID]"
+                          dataType="wstr"
+                          length="3"
+                          lineageId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Error Output].Columns[CurrencyID]"
+                          name="CurrencyID" />
+                        <outputColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Error Output].Columns[CurrencyName]"
+                          dataType="wstr"
+                          length="20"
+                          lineageId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Error Output].Columns[CurrencyName]"
+                          name="CurrencyName" />
+                        <outputColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Error Output].Columns[CurrencySymbol]"
+                          dataType="wstr"
+                          length="3"
+                          lineageId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Error Output].Columns[CurrencySymbol]"
+                          name="CurrencySymbol" />
+                        <outputColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Error Output].Columns[CreateDate]"
+                          dataType="dbDate"
+                          lineageId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Error Output].Columns[CreateDate]"
+                          name="CreateDate" />
+                        <outputColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Error Output].Columns[LastUpdateDate]"
+                          dataType="dbDate"
+                          lineageId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Error Output].Columns[LastUpdateDate]"
+                          name="LastUpdateDate" />
+                        <outputColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\DimCurrency\LoadDimCurrency\DimCurrency"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="DimCurrency"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[DimCurrency]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\DimCurrency\LoadDimCurrency\DimCurrency.Connections[OleDbConnection]"
+                      connectionManagerID="{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[(local).PlusOrders_DataMart]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\DimCurrency\LoadDimCurrency\DimCurrency.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\DimCurrency.Inputs[OLE DB Destination Input].Columns[CurrencyName]"
+                          cachedDataType="wstr"
+                          cachedLength="20"
+                          cachedName="CurrencyName"
+                          externalMetadataColumnId="Package\DimCurrency\LoadDimCurrency\DimCurrency.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyName]"
+                          lineageId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].Columns[CurrencyName]" />
+                        <inputColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\DimCurrency.Inputs[OLE DB Destination Input].Columns[CurrencyID]"
+                          cachedDataType="wstr"
+                          cachedLength="3"
+                          cachedName="CurrencyID"
+                          externalMetadataColumnId="Package\DimCurrency\LoadDimCurrency\DimCurrency.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyCode]"
+                          lineageId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output].Columns[CurrencyID]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\DimCurrency.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyKey]"
+                          dataType="i4"
+                          name="CurrencyKey" />
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\DimCurrency.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyCode]"
+                          dataType="wstr"
+                          length="3"
+                          name="CurrencyCode" />
+                        <externalMetadataColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\DimCurrency.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyName]"
+                          dataType="wstr"
+                          length="50"
+                          name="CurrencyName" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\DimCurrency\LoadDimCurrency\DimCurrency.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\DimCurrency\LoadDimCurrency\DimCurrency.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\DimCurrency.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\DimCurrency\LoadDimCurrency\DimCurrency.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\DimCurrency\LoadDimCurrency\DimCurrency.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\DimCurrency\LoadDimCurrency\DimCurrency.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\DimCurrency\LoadDimCurrency.Paths[OLE DB Source Output]"
+                  endId="Package\DimCurrency\LoadDimCurrency\DimCurrency.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\DimCurrency\LoadDimCurrency\Currencies.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\DimCurrency.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{5E2424C3-51A7-4755-9205-9D4D498FFD33}"
+          DTS:EvalOp="1"
+          DTS:Expression="@[User::DimCurrencyRows] == 0"
+          DTS:From="Package\DimCurrency\IsDimCurrencyEmpty?"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\DimCurrency\LoadDimCurrency" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\FactCurrency"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{DA4F2F4E-A151-40ED-B6D3-7181AFD3DCB3}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="FactCurrency">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\FactCurrency\Load FactCurrencyTable"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{6B61C705-7A5E-48C2-A860-73F39B9C6DD7}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Load FactCurrencyTable"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="2070"
+                  name="CurrencyRates"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CurrencyRates]"
+                      connectionManagerRefId="Package.ConnectionManagers[CurrencyRates]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].Columns[SourceCurrency]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].ExternalColumns[SourceCurrency]"
+                          length="50"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].Columns[SourceCurrency]"
+                          name="SourceCurrency"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].Columns[DestinationCurrency]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].ExternalColumns[DestinationCurrency]"
+                          length="50"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].Columns[DestinationCurrency]"
+                          name="DestinationCurrency"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].Columns[SourceDestinationExchangeRate]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].ExternalColumns[SourceDestinationExchangeRate]"
+                          length="50"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].Columns[SourceDestinationExchangeRate]"
+                          name="SourceDestinationExchangeRate"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].Columns[DestinationSourceExchangeRate]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].ExternalColumns[DestinationSourceExchangeRate]"
+                          length="50"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].Columns[DestinationSourceExchangeRate]"
+                          name="DestinationSourceExchangeRate"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].ExternalColumns[SourceCurrency]"
+                          dataType="wstr"
+                          length="50"
+                          name="SourceCurrency" />
+                        <externalMetadataColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].ExternalColumns[DestinationCurrency]"
+                          dataType="wstr"
+                          length="50"
+                          name="DestinationCurrency" />
+                        <externalMetadataColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].ExternalColumns[SourceDestinationExchangeRate]"
+                          dataType="wstr"
+                          length="50"
+                          name="SourceDestinationExchangeRate" />
+                        <externalMetadataColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].ExternalColumns[DestinationSourceExchangeRate]"
+                          dataType="wstr"
+                          length="50"
+                          name="DestinationSourceExchangeRate" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  name="Data Conversion"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Inputs[Data Conversion Input].Columns[CurrencyKey]"
+                          cachedDataType="i4"
+                          cachedName="CurrencyKey"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Outputs[Lookup Match Output].Columns[CurrencyKey]" />
+                        <inputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Inputs[Data Conversion Input].Columns[CurrencyKey1]"
+                          cachedDataType="i4"
+                          cachedName="CurrencyKey"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Outputs[Lookup Match Output].Columns[CurrencyKey]" />
+                        <inputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Inputs[Data Conversion Input].Columns[DateKey]"
+                          cachedDataType="i4"
+                          cachedName="DateKey"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Outputs[Lookup Match Output].Columns[DateKey]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Lookup SourceCurrency.CurrencyKey]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Lookup SourceCurrency.CurrencyKey]"
+                          name="Copy of Lookup SourceCurrency.CurrencyKey"
+                          precision="18"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Outputs[Lookup Match Output].Columns[CurrencyKey]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Lookup DesctinationCurrency.CurrencyKey]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Lookup DesctinationCurrency.CurrencyKey]"
+                          name="Copy of Lookup DesctinationCurrency.CurrencyKey"
+                          precision="18"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Outputs[Lookup Match Output].Columns[CurrencyKey]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DateKey]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of DateKey]"
+                          name="Copy of DateKey"
+                          precision="18"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Outputs[Lookup Match Output].Columns[DateKey]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FactCurrency\Load FactCurrencyTable\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\FactCurrency\Load FactCurrencyTable\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Derived Column.Outputs[Derived Column Output].Columns[Today]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Derived Column.Outputs[Derived Column Output].Columns[Today]"
+                          name="Today"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_DBDATE)[GETDATE]()</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_DBDATE)GETDATE()</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\FactCurrency\Load FactCurrencyTable\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+                  description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+                  name="Lookup DateKey"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimDate]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimDate]) [refTable]
+where [refTable].[FullDate] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DateKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FullDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Year" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Month" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayNumberOfYear" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayNumberOfMonth" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayNumberOfWeek" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Week" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayOfWeek" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Weekend" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MonthName" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Quarter" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Semester" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Trimester" dataType="DT_UI1" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Season" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\FactCurrency\Load FactCurrencyTable\Derived Column.Outputs[Derived Column Output].Columns[Today]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Connections[OleDbConnection]"
+                      connectionManagerID="{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[(local).PlusOrders_DataMart]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Inputs[Lookup Input].Columns[Today]"
+                          cachedDataType="dbDate"
+                          cachedName="Today"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Derived Column.Outputs[Derived Column Output].Columns[Today]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">FullDate</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      errorRowDisposition="IgnoreFailure"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Outputs[Lookup Match Output].Columns[DateKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Outputs[Lookup Match Output].Columns[DateKey]"
+                          name="DateKey"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">DateKey</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+                  description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+                  name="Lookup DesctinationCurrency"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimCurrency]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimCurrency]) [refTable]
+where [refTable].[CurrencyCode] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CurrencyKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CurrencyCode" dataType="DT_WSTR" length="3" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CurrencyName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].Columns[DestinationCurrency]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Connections[OleDbConnection]"
+                      connectionManagerID="{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[(local).PlusOrders_DataMart]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Inputs[Lookup Input].Columns[DestinationCurrency]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="DestinationCurrency"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].Columns[DestinationCurrency]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">CurrencyCode</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      errorRowDisposition="IgnoreFailure"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Outputs[Lookup Match Output].Columns[CurrencyKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Outputs[Lookup Match Output].Columns[CurrencyKey]"
+                          name="CurrencyKey"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">CurrencyKey</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+                  description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+                  name="Lookup SourceCurrency"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimCurrency]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimCurrency]) [refTable]
+where [refTable].[CurrencyCode] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CurrencyKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CurrencyCode" dataType="DT_WSTR" length="3" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CurrencyName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].Columns[SourceCurrency]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Connections[OleDbConnection]"
+                      connectionManagerID="{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[(local).PlusOrders_DataMart]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Inputs[Lookup Input].Columns[SourceCurrency]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="SourceCurrency"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].Columns[SourceCurrency]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">CurrencyCode</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      errorRowDisposition="IgnoreFailure"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Outputs[Lookup Match Output].Columns[CurrencyKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Outputs[Lookup Match Output].Columns[CurrencyKey]"
+                          name="CurrencyKey"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">CurrencyKey</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[FactCurrencyRate]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[(local).PlusOrders_DataMart]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SourceDestinationExchangeRate]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="SourceDestinationExchangeRate"
+                          externalMetadataColumnId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceDestinationExchangeRate]"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].Columns[SourceDestinationExchangeRate]" />
+                        <inputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DestinationSourceExchangeRate]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="DestinationSourceExchangeRate"
+                          externalMetadataColumnId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DestinationSourceExchangeRate]"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output].Columns[DestinationSourceExchangeRate]" />
+                        <inputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CurrencyKey]"
+                          cachedDataType="i4"
+                          cachedName="CurrencyKey"
+                          externalMetadataColumnId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DestinationCurrencyKey]"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Outputs[Lookup Match Output].Columns[CurrencyKey]" />
+                        <inputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CurrencyKey1]"
+                          cachedDataType="i4"
+                          cachedName="CurrencyKey"
+                          externalMetadataColumnId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceCurrencyKey]"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Outputs[Lookup Match Output].Columns[CurrencyKey]" />
+                        <inputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateKey]"
+                          cachedDataType="i4"
+                          cachedName="DateKey"
+                          externalMetadataColumnId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ConversionDateKey]"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Outputs[Lookup Match Output].Columns[DateKey]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ConversionDateKey]"
+                          dataType="i4"
+                          name="ConversionDateKey" />
+                        <externalMetadataColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceCurrencyKey]"
+                          dataType="i4"
+                          name="SourceCurrencyKey" />
+                        <externalMetadataColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DestinationCurrencyKey]"
+                          dataType="i4"
+                          name="DestinationCurrencyKey" />
+                        <externalMetadataColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceDestinationExchangeRate]"
+                          dataType="numeric"
+                          name="SourceDestinationExchangeRate"
+                          precision="10"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DestinationSourceExchangeRate]"
+                          dataType="numeric"
+                          name="DestinationSourceExchangeRate"
+                          precision="10"
+                          scale="4" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\FactCurrency\Load FactCurrencyTable.Paths[Data Conversion Output]"
+                  endId="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Data Conversion Output"
+                  startId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\FactCurrency\Load FactCurrencyTable.Paths[Derived Column Output]"
+                  endId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Inputs[Lookup Input]"
+                  name="Derived Column Output"
+                  startId="Package\FactCurrency\Load FactCurrencyTable\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\FactCurrency\Load FactCurrencyTable.Paths[Flat File Source Output]"
+                  endId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Inputs[Lookup Input]"
+                  name="Flat File Source Output"
+                  startId="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates.Outputs[Flat File Source Output]" />
+                <path
+                  refId="Package\FactCurrency\Load FactCurrencyTable.Paths[Lookup Match Output]"
+                  endId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Inputs[Lookup Input]"
+                  name="Lookup Match Output"
+                  startId="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\FactCurrency\Load FactCurrencyTable.Paths[Lookup Match Output1]"
+                  endId="Package\FactCurrency\Load FactCurrencyTable\Derived Column.Inputs[Derived Column Input]"
+                  name="Lookup Match Output"
+                  startId="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\FactCurrency\Load FactCurrencyTable.Paths[Lookup Match Output2]"
+                  endId="Package\FactCurrency\Load FactCurrencyTable\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Lookup Match Output"
+                  startId="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey.Outputs[Lookup Match Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C1FF0986-EAC9-41F9-B9D4-CADC29CA0F7D}"
+      DTS:From="Package\DimCurrency"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\FactCurrency" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\DimCurrency\IsDimCurrencyEmpty?"
+          TopLeft="53.2285724001878,51.5529410920135" />
+        <NodeLayout
+          Size="161.6,41.6"
+          Id="Package\DimCurrency\LoadDimCurrency"
+          TopLeft="64.6571438530879,143.764705665177" />
+        <EdgeLayout
+          Id="Package\DimCurrency.PrecedenceConstraints[Constraint 1]"
+          TopLeft="144.942858126638,93.1529410920135">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.6117645731642"
+              Start="0,0"
+              End="0,43.1117645731642">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.1117645731642" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,13.5558822865821,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="349.6,265.6"
+          Size="349.6,308.8"
+          Id="Package\DimCurrency"
+          TopLeft="72.8571430122365,57.3529411261985" />
+        <NodeLayout
+          Size="191.2,41.6"
+          Id="Package\FactCurrency\Load FactCurrencyTable"
+          TopLeft="57.8857160404019,43.5176468369557" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="287.2,145.6"
+          Size="287.2,188.8"
+          Id="Package\FactCurrency"
+          TopLeft="559.285715476287,115.423529340043" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="422.457143012236,210.788235233121">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="136.82857246405,0"
+              Start="0,0"
+              End="129.32857246405,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="129.32857246405,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DimCurrency\IsDimCurrencyEmpty?">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\DimCurrency\IsDimCurrencyEmpty?\Row Count"
+          TopLeft="541.666658595204,179.999997317791" />
+        <NodeLayout
+          Size="139.2,41.6"
+          Id="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency"
+          TopLeft="537.999991983175,79.9999988079071" />
+        <EdgeLayout
+          Id="Package\DimCurrency\IsDimCurrencyEmpty?.Paths[OLE DB Source Output]"
+          TopLeft="607.03332528919,121.599998807907">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58.3999985098839"
+              Start="0,0"
+              End="0,50.8999985098839">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.8999985098839" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimCurrency\IsDimCurrencyEmpty?\DimCurrency">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\FactCurrency\Load FactCurrencyTable">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="146.4,41.6"
+          Id="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates"
+          TopLeft="373.571429366664,82.5882352217259" />
+        <NodeLayout
+          Size="215.2,41.6"
+          Id="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency"
+          TopLeft="342.14285787119,290.588235039406" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\FactCurrency\Load FactCurrencyTable\Derived Column"
+          TopLeft="372.857143650858,404.52941141012" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination"
+          TopLeft="367.857143640214,680.588234697556" />
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey"
+          TopLeft="372.142857935051,498.588234857086" />
+        <NodeLayout
+          Size="189.6,41.6"
+          Id="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency"
+          TopLeft="350.000000745058,178.941176313739" />
+        <EdgeLayout
+          Id="Package\FactCurrency\Load FactCurrencyTable.Paths[Lookup Match Output1]"
+          TopLeft="449.500000761024,332.188235039406">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,72.3411763707144"
+              Start="0,0"
+              End="0,64.8411763707144">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.8411763707144" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,26.6159006853572,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactCurrency\Load FactCurrencyTable.Paths[Lookup Match Output]"
+          TopLeft="447.271429308124,220.541176313739">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70.0470587256664"
+              Start="0,0"
+              End="0,62.5470587256664">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.5470587256664" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,25.4688418628332,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactCurrency\Load FactCurrencyTable.Paths[Flat File Source Output]"
+          TopLeft="445.785715055861,124.188235221726">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.7529410920134"
+              Start="0,0"
+              End="0,47.2529410920134">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.2529410920134" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactCurrency\Load FactCurrencyTable.Paths[Derived Column Output]"
+          TopLeft="449.500000792954,446.12941141012">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52.4588234469656"
+              Start="0,0"
+              End="0,44.9588234469656">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.9588234469656" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\FactCurrency\Load FactCurrencyTable\Data Conversion"
+          TopLeft="372.857143650858,588.611764550374" />
+        <EdgeLayout
+          Id="Package\FactCurrency\Load FactCurrencyTable.Paths[Lookup Match Output2]"
+          TopLeft="450.100000792954,540.188234857086">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.4235296932878"
+              Start="0,0"
+              End="0,40.9235296932878">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.9235296932878" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,14.6570773466439,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactCurrency\Load FactCurrencyTable.Paths[Data Conversion Output]"
+          TopLeft="451.757143645536,630.211764550374">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50.3764701471819"
+              Start="0,0"
+              End="0,42.8764701471819">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.8764701471819" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimCurrency]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimDate]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimCurrency]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DimCurrency\LoadDimCurrency">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="139.2,41.6"
+          Id="Package\DimCurrency\LoadDimCurrency\DimCurrency"
+          TopLeft="275.000000585403,167.4705880885" />
+        <NodeLayout
+          Size="128,41.6"
+          Id="Package\DimCurrency\LoadDimCurrency\Currencies"
+          TopLeft="281.428572027659,70.3529411148035" />
+        <EdgeLayout
+          Id="Package\DimCurrency\LoadDimCurrency.Paths[OLE DB Source Output]"
+          TopLeft="345.014286306531,111.952941114804">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55.5176469736961"
+              Start="0,0"
+              End="0,48.0176469736961">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.0176469736961" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimCurrency\LoadDimCurrency\Currencies">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimCurrency\LoadDimCurrency\DimCurrency">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
