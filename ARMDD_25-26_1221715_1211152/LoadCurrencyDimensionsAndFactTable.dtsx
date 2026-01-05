@@ -11,8 +11,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="36"
-  DTS:VersionGUID="{F74D15EB-6BC4-450F-A886-46EF51A47D7D}">
+  DTS:VersionBuild="37"
+  DTS:VersionGUID="{3F15CEBA-DB5C-4A0E-8659-F7660DF32DC3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -751,6 +751,23 @@
       DTS:ObjectName="FactCurrency">
       <DTS:Variables />
       <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\FactCurrency\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{78258241-51AA-4560-8F36-1BC00302D40C}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.FactCurrencyRate;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
         <DTS:Executable
           DTS:refId="Package\FactCurrency\Load FactCurrencyTable"
           DTS:CreationName="Microsoft.Pipeline"
@@ -1807,6 +1824,16 @@ where [refTable].[CurrencyCode] = ?</property>
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\FactCurrency.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{F9CD4816-A3B1-4649-82CC-06DFB07F2228}"
+          DTS:From="Package\FactCurrency\Execute SQL Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\FactCurrency\Load FactCurrencyTable" />
+      </DTS:PrecedenceConstraints>
     </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
@@ -1830,7 +1857,7 @@ where [refTable].[CurrencyCode] = ?</property>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="182.4,41.6"
           Id="Package\DimCurrency\IsDimCurrencyEmpty?"
@@ -1873,28 +1900,66 @@ where [refTable].[CurrencyCode] = ?</property>
         <NodeLayout
           Size="191.2,41.6"
           Id="Package\FactCurrency\Load FactCurrencyTable"
-          TopLeft="57.8857160404019,43.5176468369557" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="287.2,145.6"
-          Size="287.2,188.8"
-          Id="Package\FactCurrency"
-          TopLeft="559.285715476287,115.423529340043" />
+          TopLeft="56.4571446087893,101.635293844837" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\FactCurrency\Execute SQL Task"
+          TopLeft="68.5142867695313,5.5" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="422.457143012236,210.788235233121">
+          Id="Package\FactCurrency.PrecedenceConstraints[Constraint]"
+          TopLeft="150.88571568916,47.1">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="136.82857246405,0"
+              EndConnector="0,54.5352938448369"
               Start="0,0"
-              End="129.32857246405,0">
+              End="0,47.0352938448369">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="129.32857246405,0" />
+                    End="0,47.0352938448369" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="287.2,198.4"
+          Size="287.2,241.6"
+          Id="Package\FactCurrency"
+          TopLeft="559.285715476287,115.423529340043" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="422.457143012237,211.752941126198">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="136.82857246405,24.4705882138445"
+              Start="0,0"
+              End="129.32857246405,24.4705882138445">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="64.4142862320252,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="64.4142862320252,0"
+                    Point2="68.4142862320252,0"
+                    Point3="68.4142862320252,4" />
+                  <mssgle:LineSegment
+                    End="68.4142862320252,20.4705882138445" />
+                  <mssgle:CubicBezierSegment
+                    Point1="68.4142862320252,20.4705882138445"
+                    Point2="68.4142862320252,24.4705882138445"
+                    Point3="72.4142862320252,24.4705882138445" />
+                  <mssgle:LineSegment
+                    End="129.32857246405,24.4705882138445" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1960,34 +2025,128 @@ where [refTable].[CurrencyCode] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
+    design-time-name="Package\DimCurrency\LoadDimCurrency">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="139.2,41.6"
+          Id="Package\DimCurrency\LoadDimCurrency\DimCurrency"
+          TopLeft="275.000000585403,167.4705880885" />
+        <NodeLayout
+          Size="128,41.6"
+          Id="Package\DimCurrency\LoadDimCurrency\Currencies"
+          TopLeft="281.428572027659,70.3529411148035" />
+        <EdgeLayout
+          Id="Package\DimCurrency\LoadDimCurrency.Paths[OLE DB Source Output]"
+          TopLeft="345.014286306531,111.952941114804">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55.5176469736961"
+              Start="0,0"
+              End="0,48.0176469736961">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.0176469736961" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimCurrency\LoadDimCurrency\Currencies">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimCurrency\LoadDimCurrency\DimCurrency">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
     design-time-name="Package\FactCurrency\Load FactCurrencyTable">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="146.4,41.6"
-          Id="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates"
-          TopLeft="373.571429366664,82.5882352217259" />
-        <NodeLayout
-          Size="215.2,41.6"
-          Id="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency"
-          TopLeft="342.14285787119,290.588235039406" />
+          Size="170.4,41.6"
+          Id="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination"
+          TopLeft="367.857143640214,680.588234697556" />
         <NodeLayout
           Size="152.8,41.6"
           Id="Package\FactCurrency\Load FactCurrencyTable\Derived Column"
           TopLeft="372.857143650858,404.52941141012" />
         <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination"
-          TopLeft="367.857143640214,680.588234697556" />
+          Size="189.6,41.6"
+          Id="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency"
+          TopLeft="350.000000745058,178.941176313739" />
+        <NodeLayout
+          Size="215.2,41.6"
+          Id="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency"
+          TopLeft="342.14285787119,290.588235039406" />
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\FactCurrency\Load FactCurrencyTable\Data Conversion"
+          TopLeft="372.857143650858,588.611764550374" />
         <NodeLayout
           Size="155.2,41.6"
           Id="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey"
           TopLeft="372.142857935051,498.588234857086" />
         <NodeLayout
-          Size="189.6,41.6"
-          Id="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency"
-          TopLeft="350.000000745058,178.941176313739" />
+          Size="146.4,41.6"
+          Id="Package\FactCurrency\Load FactCurrencyTable\CurrencyRates"
+          TopLeft="373.571429366664,82.5882352217259" />
+        <EdgeLayout
+          Id="Package\FactCurrency\Load FactCurrencyTable.Paths[Lookup Match Output2]"
+          TopLeft="450.100000792954,540.188234857086">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.4235296932878"
+              Start="0,0"
+              End="0,40.9235296932878">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.9235296932878" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,14.6570773466439,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\FactCurrency\Load FactCurrencyTable.Paths[Lookup Match Output1]"
           TopLeft="449.500000761024,332.188235039406">
@@ -2080,34 +2239,6 @@ where [refTable].[CurrencyCode] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="155.2,41.6"
-          Id="Package\FactCurrency\Load FactCurrencyTable\Data Conversion"
-          TopLeft="372.857143650858,588.611764550374" />
-        <EdgeLayout
-          Id="Package\FactCurrency\Load FactCurrencyTable.Paths[Lookup Match Output2]"
-          TopLeft="450.100000792954,540.188234857086">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,48.4235296932878"
-              Start="0,0"
-              End="0,40.9235296932878">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.9235296932878" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,14.6570773466439,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\FactCurrency\Load FactCurrencyTable.Paths[Data Conversion Output]"
           TopLeft="451.757143645536,630.211764550374">
@@ -2134,6 +2265,42 @@ where [refTable].[CurrencyCode] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
+    design-time-name="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimCurrency]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\FactCurrency\Load FactCurrencyTable\Lookup DesctinationCurrency">
     <Properties>
       <Property>
@@ -2157,19 +2324,6 @@ where [refTable].[CurrencyCode] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\FactCurrency\Load FactCurrencyTable\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\FactCurrency\Load FactCurrencyTable\Lookup DateKey">
     <Properties>
       <Property>
@@ -2189,95 +2343,6 @@ where [refTable].[CurrencyCode] = ?</property>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\FactCurrency\Load FactCurrencyTable\Lookup SourceCurrency">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimCurrency]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\DimCurrency\LoadDimCurrency">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="139.2,41.6"
-          Id="Package\DimCurrency\LoadDimCurrency\DimCurrency"
-          TopLeft="275.000000585403,167.4705880885" />
-        <NodeLayout
-          Size="128,41.6"
-          Id="Package\DimCurrency\LoadDimCurrency\Currencies"
-          TopLeft="281.428572027659,70.3529411148035" />
-        <EdgeLayout
-          Id="Package\DimCurrency\LoadDimCurrency.Paths[OLE DB Source Output]"
-          TopLeft="345.014286306531,111.952941114804">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,55.5176469736961"
-              Start="0,0"
-              End="0,48.0176469736961">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,48.0176469736961" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\DimCurrency\LoadDimCurrency\Currencies">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\DimCurrency\LoadDimCurrency\DimCurrency">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
