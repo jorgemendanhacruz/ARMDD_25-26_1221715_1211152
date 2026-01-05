@@ -5,14 +5,15 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="CPU_JORGE_CRUZ"
   DTS:CreatorName="CPU_JORGE_CRUZ\jorge"
+  DTS:DelayValidation="True"
   DTS:DTSID="{B3B0EB61-EA27-4FE7-A13F-0A6F88370B38}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="16.0.5685.2"
   DTS:LocaleID="2070"
   DTS:ObjectName="Main"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{2BF01D69-DB11-4263-ABEA-E58C22962CF8}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{8FDB3F7A-49F8-4F9E-898A-793872DA37AD}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -20,6 +21,7 @@
     <DTS:Executable
       DTS:refId="Package\Create DataMart"
       DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:DelayValidation="True"
       DTS:Description="Execute Package Task"
       DTS:DTSID="{67D49A99-A58C-40AF-8970-DC981E963B07}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
@@ -37,6 +39,7 @@
     <DTS:Executable
       DTS:refId="Package\Create StatingArea"
       DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:DelayValidation="True"
       DTS:Description="Execute Package Task"
       DTS:DTSID="{05F5CD00-4DB3-4C63-809E-3F1B8ED947E3}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
@@ -54,6 +57,7 @@
     <DTS:Executable
       DTS:refId="Package\Load SA"
       DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:DelayValidation="True"
       DTS:Description="Execute Package Task"
       DTS:DTSID="{462AF738-907D-4957-BCC0-BA91717A2C49}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
@@ -71,6 +75,7 @@
     <DTS:Executable
       DTS:refId="Package\LoadAuxDimensions"
       DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:DelayValidation="True"
       DTS:Description="Execute Package Task"
       DTS:DTSID="{0B533534-E629-416B-8D27-7D02712E145D}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
@@ -88,6 +93,7 @@
     <DTS:Executable
       DTS:refId="Package\LoadBigDimensions"
       DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:DelayValidation="True"
       DTS:Description="Execute Package Task"
       DTS:DTSID="{7BCA39BE-5572-4A76-AAFA-E50FC4550E42}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
@@ -105,6 +111,7 @@
     <DTS:Executable
       DTS:refId="Package\LoadCurrencyAndFactCurrency"
       DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:DelayValidation="True"
       DTS:Description="Execute Package Task"
       DTS:DTSID="{CCC7BC9F-2C1B-452E-A1F9-32804AC06545}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
@@ -120,8 +127,26 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\LoadFactTable"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{5A565712-B6AB-461F-9E49-DF5A2EB5B0A6}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LoadFactTable"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>LoadFactTable.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\LoadTemporalDimensions"
       DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:DelayValidation="True"
       DTS:Description="Execute Package Task"
       DTS:DTSID="{ED489CF1-7694-4D21-A0ED-26E05F97BEDC}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
@@ -186,6 +211,14 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 5"
       DTS:To="Package\LoadBigDimensions" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{B500B292-9F1B-4F16-9EF3-6B16814E68BE}"
+      DTS:From="Package\LoadBigDimensions"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\LoadFactTable" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -216,6 +249,10 @@
           Id="Package\LoadAuxDimensions"
           TopLeft="552.85714403403,146.823529283068" />
         <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\LoadBigDimensions"
+          TopLeft="339.285715007965,252.352940955273" />
+        <NodeLayout
           Size="222.4,41.6"
           Id="Package\LoadCurrencyAndFactCurrency"
           TopLeft="39.285714369343,245.470588020129" />
@@ -225,18 +262,18 @@
           TopLeft="282.142857743465,142.235293992972" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="360.685714699297,74.7117646586266">
+          TopLeft="360.685714699297,74.7117646586267">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="89.3142862586344,0"
+              EndConnector="89.314286258635,0"
               Start="0,0"
-              End="81.8142862586344,0">
+              End="81.814286258635,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="81.8142862586344,0" />
+                    End="81.814286258635,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -357,10 +394,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="169.6,41.6"
-          Id="Package\LoadBigDimensions"
-          TopLeft="339.285715007965,252.352940955273" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
           TopLeft="261.685714369343,269.711764487701">
@@ -375,6 +408,32 @@
                   Capacity="5">
                   <mssgle:LineSegment
                     End="70.1000006386216,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="146.4,41.6"
+          Id="Package\LoadFactTable"
+          TopLeft="573.314286897256,253.882352718639" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="508.885715007965,273.917646836956">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="64.4285718892907,0"
+              Start="0,0"
+              End="56.9285718892907,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="56.9285718892907,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
