@@ -11,8 +11,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="36"
-  DTS:VersionGUID="{8A21C651-43FD-4A4F-8AE1-88803356B821}">
+  DTS:VersionBuild="39"
+  DTS:VersionGUID="{78F215FB-4A03-44FC-9C06-F75322411623}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -20,6 +20,7 @@
     <DTS:Executable
       DTS:refId="Package\DFT_Load_Boxes"
       DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{779A4CD8-DDE1-49FA-B309-D69B840BA61E}"
       DTS:ExecutableType="Microsoft.Pipeline"
@@ -498,6 +499,7 @@
     <DTS:Executable
       DTS:refId="Package\DFT_Load_Categories"
       DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{8C522298-94E0-4851-838F-D46E7D9DA165}"
       DTS:ExecutableType="Microsoft.Pipeline"
@@ -864,6 +866,7 @@
     <DTS:Executable
       DTS:refId="Package\DFT_Load_Countries"
       DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{FB2FD0BB-D63D-4A1B-941E-4875004BF09B}"
       DTS:ExecutableType="Microsoft.Pipeline"
@@ -1280,6 +1283,7 @@
     <DTS:Executable
       DTS:refId="Package\DFT_Load_Customers"
       DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{B5D62E32-BE1F-4E51-9931-880075985461}"
       DTS:ExecutableType="Microsoft.Pipeline"
@@ -1763,6 +1767,7 @@
     <DTS:Executable
       DTS:refId="Package\DFT_Load_Orders"
       DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{7198E357-1194-462D-A63F-A7BF48F04425}"
       DTS:ExecutableType="Microsoft.Pipeline"
@@ -2447,6 +2452,7 @@
     <DTS:Executable
       DTS:refId="Package\DFT_Load_OrdersLines"
       DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{F271E4D4-9F7A-4B92-9708-FC9DDA6BA51D}"
       DTS:ExecutableType="Microsoft.Pipeline"
@@ -2887,6 +2893,7 @@
     <DTS:Executable
       DTS:refId="Package\DFT_Load_OrdersLinesDetails"
       DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{AD0DD892-84F3-4DD5-BC45-58DE0688335D}"
       DTS:ExecutableType="Microsoft.Pipeline"
@@ -3276,6 +3283,7 @@
     <DTS:Executable
       DTS:refId="Package\DFT_Load_Products"
       DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{5F17B349-AFAB-4110-9862-F46BB4E8D116}"
       DTS:ExecutableType="Microsoft.Pipeline"
@@ -3721,6 +3729,7 @@
     <DTS:Executable
       DTS:refId="Package\DFT_Load_Sites"
       DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{8161CBE9-0B01-4266-8277-35234C16C9E4}"
       DTS:ExecutableType="Microsoft.Pipeline"
@@ -4214,6 +4223,7 @@
     <DTS:Executable
       DTS:refId="Package\DFT_Load_Sizes"
       DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{F33FBABE-0BDC-4D2B-BE20-C4220059EECB}"
       DTS:ExecutableType="Microsoft.Pipeline"
@@ -5405,6 +5415,7 @@
     <DTS:Executable
       DTS:refId="Package\DTF_Load_Currencies"
       DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{75049EA2-1CE5-4A49-9BE1-648F63292638}"
       DTS:ExecutableType="Microsoft.Pipeline"
@@ -5776,6 +5787,7 @@
     <DTS:Executable
       DTS:refId="Package\Execute SQL Task"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DelayValidation="True"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{5F16A38A-1D9F-40A9-97A0-127B0B865D69}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
@@ -6202,7 +6214,7 @@
     design-time-name="Package\DFT_Load_Boxes">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="149.6,41.6"
           Id="Package\DFT_Load_Boxes\OLE DB Source"
@@ -6230,7 +6242,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6332,7 +6346,7 @@
     design-time-name="Package\DFT_Load_Countries">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="149.6,41.6"
           Id="Package\DFT_Load_Countries\OLE DB Source"
@@ -6360,7 +6374,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

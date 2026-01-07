@@ -11,8 +11,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="LoadBigDimensions"
   DTS:PackageType="5"
-  DTS:VersionBuild="50"
-  DTS:VersionGUID="{8EDDC473-FA49-445D-8CF0-8768710A82BE}">
+  DTS:VersionBuild="56"
+  DTS:VersionGUID="{D5D8328D-C742-47BE-B616-BD2B87F75647}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -341,6 +341,12 @@
                           cachedLength="255"
                           cachedName="DateOfBirth"
                           lineageId="Package\Load Big Dimensions\Load DimCustomer\Customer.Outputs[OLE DB Source Output].Columns[DateOfBirth]" />
+                        <inputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Data Conversion.Inputs[Data Conversion Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Name"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Outputs[Lookup Match Output].Columns[Name]" />
                       </inputColumns>
                       <externalMetadataColumns />
                     </input>
@@ -458,6 +464,28 @@
                               name="FastParse">false</property>
                           </properties>
                         </outputColumn>
+                        <outputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Data Conversion.Outputs[Data Conversion Output].Columns[CountryName_STR]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="255"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Data Conversion.Outputs[Data Conversion Output].Columns[CountryName_STR]"
+                          name="CountryName_STR"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Load Big Dimensions\Load DimCustomer\Lookup.Outputs[Lookup Match Output].Columns[Name]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
                       </outputColumns>
                       <externalMetadataColumns />
                     </output>
@@ -486,198 +514,11 @@
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Load Big Dimensions\Load DimCustomer\Derived Column"
-                  componentClassID="Microsoft.DerivedColumn"
-                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-                  name="Derived Column"
-                  usesDispositions="true">
-                  <inputs>
-                    <input
-                      refId="Package\Load Big Dimensions\Load DimCustomer\Derived Column.Inputs[Derived Column Input]"
-                      description="Input to the Derived Column Transformation"
-                      name="Derived Column Input">
-                      <externalMetadataColumns />
-                    </input>
-                  </inputs>
-                  <outputs>
-                    <output
-                      refId="Package\Load Big Dimensions\Load DimCustomer\Derived Column.Outputs[Derived Column Output]"
-                      description="Default Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      name="Derived Column Output"
-                      synchronousInputId="Package\Load Big Dimensions\Load DimCustomer\Derived Column.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Derived Column.Outputs[Derived Column Output].Columns[ExpiredDate]"
-                          dataType="dbDate"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Derived Column.Outputs[Derived Column Output].Columns[ExpiredDate]"
-                          name="ExpiredDate"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">(DT_DBDATE)(@[System::ContainerStartTime])</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">(DT_DBDATE)(@[System::ContainerStartTime])</property>
-                          </properties>
-                        </outputColumn>
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                    <output
-                      refId="Package\Load Big Dimensions\Load DimCustomer\Derived Column.Outputs[Derived Column Error Output]"
-                      description="Error Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      isErrorOut="true"
-                      name="Derived Column Error Output"
-                      synchronousInputId="Package\Load Big Dimensions\Load DimCustomer\Derived Column.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          dataType="i4"
-                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          name="ErrorCode"
-                          specialFlags="1" />
-                        <outputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          dataType="i4"
-                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          name="ErrorColumn"
-                          specialFlags="2" />
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                  </outputs>
-                </component>
-                <component
-                  refId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record"
-                  componentClassID="Microsoft.OLEDBCommand"
-                  contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-                  description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
-                  name="Expire Old Record"
-                  usesDispositions="true"
-                  version="2">
-                  <properties>
-                    <property
-                      dataType="System.Int32"
-                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                      name="CommandTimeout">0</property>
-                    <property
-                      dataType="System.String"
-                      description="The SQL command to be executed."
-                      expressionType="Notify"
-                      name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DimCustomer] 
-SET [ExpiredDate] = ?, IsCurrent = 0 
-WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the column code page to use when code page information is unavailable from the data source."
-                      name="DefaultCodePage">1252</property>
-                  </properties>
-                  <connections>
-                    <connection
-                      refId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Connections[OleDbConnection]"
-                      connectionManagerID="{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[(local).PlusOrders_DataMart]"
-                      description="The OLE DB runtime connection used to access the database."
-                      name="OleDbConnection" />
-                  </connections>
-                  <inputs>
-                    <input
-                      refId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Inputs[OLE DB Command Input]"
-                      errorOrTruncationOperation="Command Execution"
-                      errorRowDisposition="FailComponent"
-                      hasSideEffects="true"
-                      name="OLE DB Command Input">
-                      <inputColumns>
-                        <inputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Inputs[OLE DB Command Input].Columns[CustomerID]"
-                          cachedDataType="i4"
-                          cachedName="CustomerID"
-                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Customer.Outputs[OLE DB Source Output].Columns[CustomerID]" />
-                        <inputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Inputs[OLE DB Command Input].Columns[ExpiredDate]"
-                          cachedDataType="dbDate"
-                          cachedName="ExpiredDate"
-                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Derived Column.Outputs[Derived Column Output].Columns[ExpiredDate]" />
-                      </inputColumns>
-                      <externalMetadataColumns
-                        isUsed="True">
-                        <externalMetadataColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                          dataType="dbDate"
-                          name="Param_0">
-                          <properties>
-                            <property
-                              dataType="System.Int32"
-                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                              name="DBParamInfoFlags">65</property>
-                          </properties>
-                        </externalMetadataColumn>
-                        <externalMetadataColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                          dataType="i4"
-                          name="Param_1">
-                          <properties>
-                            <property
-                              dataType="System.Int32"
-                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                              name="DBParamInfoFlags">81</property>
-                          </properties>
-                        </externalMetadataColumn>
-                      </externalMetadataColumns>
-                    </input>
-                  </inputs>
-                  <outputs>
-                    <output
-                      refId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Outputs[OLE DB Command Output]"
-                      exclusionGroup="1"
-                      name="OLE DB Command Output"
-                      synchronousInputId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Inputs[OLE DB Command Input]">
-                      <externalMetadataColumns />
-                    </output>
-                    <output
-                      refId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Outputs[OLE DB Command Error Output]"
-                      exclusionGroup="1"
-                      isErrorOut="true"
-                      name="OLE DB Command Error Output"
-                      synchronousInputId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Inputs[OLE DB Command Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                          dataType="i4"
-                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                          name="ErrorCode"
-                          specialFlags="1" />
-                        <outputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                          dataType="i4"
-                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                          name="ErrorColumn"
-                          specialFlags="2" />
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                  </outputs>
-                </component>
-                <component
-                  refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination"
+                  refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer"
                   componentClassID="Microsoft.OLEDBDestination"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
-                  name="Insert Destination"
+                  name="Insert DimCustomer"
                   usesDispositions="true"
                   version="4">
                   <properties>
@@ -710,7 +551,7 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                       dataType="System.Int32"
                       description="Specifies the mode used to access the database."
                       name="AccessMode"
-                      typeConverter="AccessMode">3</property>
+                      typeConverter="AccessMode">0</property>
                     <property
                       dataType="System.Boolean"
                       description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
@@ -722,7 +563,7 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                     <property
                       dataType="System.String"
                       description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                      name="FastLoadOptions"></property>
                     <property
                       dataType="System.Int32"
                       description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
@@ -730,7 +571,7 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Connections[OleDbConnection]"
+                      refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Connections[OleDbConnection]"
                       connectionManagerID="{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}:external"
                       connectionManagerRefId="Project.ConnectionManagers[(local).PlusOrders_DataMart]"
                       description="The OLE DB runtime connection used to access the database."
@@ -738,125 +579,127 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input]"
+                      refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input]"
                       errorOrTruncationOperation="Insert"
                       errorRowDisposition="FailComponent"
                       hasSideEffects="true"
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].Columns[CustomerID]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].Columns[CustomerID]"
                           cachedDataType="i4"
                           cachedName="CustomerID"
-                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
                           lineageId="Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[CustomerID]" />
                         <inputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].Columns[DateOfBirth_DT_DBDATE]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].Columns[DateOfBirth_DT_DBDATE]"
                           cachedDataType="dbDate"
                           cachedName="DateOfBirth_DT_DBDATE"
-                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerBirthday]"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[CustomerBirthday]"
                           lineageId="Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[DateOfBirth_DT_DBDATE]" />
                         <inputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].Columns[Gender_Transformed_STR]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].Columns[Gender_Transformed_STR]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="1"
                           cachedName="Gender_Transformed_STR"
-                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
                           lineageId="Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[Gender_Transformed_STR]" />
                         <inputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].Columns[IsVipCustomer_Transformed_STR]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].Columns[IsVipCustomer_Transformed_STR]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="1"
                           cachedName="IsVipCustomer_Transformed_STR"
-                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsVipCustomer]"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[IsVipCustomer]"
                           lineageId="Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[IsVipCustomer_Transformed_STR]" />
                         <inputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].Columns[GeographicRegion_UI1]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].Columns[GeographicRegion_UI1]"
                           cachedDataType="ui1"
                           cachedName="GeographicRegion_UI1"
-                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[GeographicRegion]"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[GeographicRegion]"
                           lineageId="Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[GeographicRegion_UI1]" />
                         <inputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].Columns[Language_Transformed_STR]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].Columns[CountryName_STR]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="CountryName_STR"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[CountryName_STR]" />
+                        <inputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].Columns[Language_Transformed_STR]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="2"
                           cachedName="Language_Transformed_STR"
-                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Language]"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[Language]"
                           lineageId="Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[Language_Transformed_STR]" />
                         <inputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].Columns[EffectiveDate]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].Columns[EffectiveDate]"
                           cachedDataType="dbDate"
                           cachedName="EffectiveDate"
-                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[EffectiveDate]"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[EffectiveDate]"
                           lineageId="Package\Load Big Dimensions\Load DimCustomer\Set New Record Effective Date.Outputs[Derived Column Output].Columns[EffectiveDate]" />
                         <inputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].Columns[IsCurrent]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].Columns[IsCurrent]"
                           cachedDataType="ui1"
                           cachedName="IsCurrent"
-                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsCurrent]"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[IsCurrent]"
                           lineageId="Package\Load Big Dimensions\Load DimCustomer\Set New Record Effective Date.Outputs[Derived Column Output].Columns[IsCurrent]" />
-                        <inputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].Columns[ExpiredDate]"
-                          cachedDataType="dbDate"
-                          cachedName="ExpiredDate"
-                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ExpiredDate]"
-                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Set New Record Effective Date.Outputs[Derived Column Output].Columns[ExpiredDate]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[CustomerKey]"
                           dataType="i4"
                           name="CustomerKey" />
                         <externalMetadataColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
                           dataType="i4"
                           name="CustomerID" />
                         <externalMetadataColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerBirthday]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[CustomerBirthday]"
                           dataType="dbDate"
                           name="CustomerBirthday" />
                         <externalMetadataColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
                           codePage="1252"
                           dataType="str"
                           length="1"
                           name="Gender" />
                         <externalMetadataColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsVipCustomer]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[IsVipCustomer]"
                           codePage="1252"
                           dataType="str"
                           length="1"
                           name="IsVipCustomer" />
                         <externalMetadataColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[GeographicRegion]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[GeographicRegion]"
                           dataType="ui1"
                           name="GeographicRegion" />
                         <externalMetadataColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
                           codePage="1252"
                           dataType="str"
                           length="50"
                           name="Country" />
                         <externalMetadataColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Language]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[Language]"
                           codePage="1252"
                           dataType="str"
                           length="2"
                           name="Language" />
                         <externalMetadataColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[EffectiveDate]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[EffectiveDate]"
                           dataType="dbDate"
                           name="EffectiveDate" />
                         <externalMetadataColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ExpiredDate]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[ExpiredDate]"
                           dataType="dbDate"
                           name="ExpiredDate" />
                         <externalMetadataColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsCurrent]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input].ExternalColumns[IsCurrent]"
                           dataType="ui1"
                           name="IsCurrent" />
                       </externalMetadataColumns>
@@ -864,22 +707,294 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Outputs[OLE DB Destination Error Output]"
+                      refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Outputs[OLE DB Destination Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="OLE DB Destination Error Output"
-                      synchronousInputId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input]">
+                      synchronousInputId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load Big Dimensions\Load DimCustomer\Lookup"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+                  description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+                  name="Lookup"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[Countries]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[Countries]) [refTable]
+where [refTable].[CountryID] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CountryID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Name" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Code" dataType="DT_WSTR" length="2" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="VAT" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EuroZone" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CreateDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LastUpdateDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\Load Big Dimensions\Load DimCustomer\Customer.Outputs[OLE DB Source Output].Columns[CountryID]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Connections[OleDbConnection]"
+                      connectionManagerID="{94DC0787-8844-4399-9244-DB8E3193531D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[(local).PlusOrders_StagingArea]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Inputs[Lookup Input].Columns[CountryID]"
+                          cachedDataType="i4"
+                          cachedName="CountryID"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Customer.Outputs[OLE DB Source Output].Columns[CountryID]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">CountryID</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Outputs[Lookup Match Output].Columns[Name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Copy Column"
+                          length="255"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Outputs[Lookup Match Output].Columns[Name]"
+                          name="Name"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">Name</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+                  name="OLE DB Command"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DimCustomer] 
+SET [ExpiredDate] = ?, IsCurrent = 0
+WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Connections[OleDbConnection]"
+                      connectionManagerID="{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[(local).PlusOrders_DataMart]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Inputs[OLE DB Command Input].Columns[CustomerID]"
+                          cachedDataType="i4"
+                          cachedName="CustomerID"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Customer.Outputs[OLE DB Source Output].Columns[CustomerID]" />
+                        <inputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Inputs[OLE DB Command Input].Columns[ExpiredDate]"
+                          cachedDataType="dbDate"
+                          cachedName="ExpiredDate"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Set Old Record Expired Date.Outputs[Derived Column Output].Columns[ExpiredDate]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          dataType="dbDate"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          dataType="i4"
+                          name="Param_1">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">81</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -923,35 +1038,13 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">(DT_DBDATE)(@[System::ContainerStartTime])</property>
+                              name="Expression">(DT_DBDATE)(@[System::CreationDate])</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">(DT_DBDATE)(@[System::ContainerStartTime])</property>
-                          </properties>
-                        </outputColumn>
-                        <outputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Set New Record Effective Date.Outputs[Derived Column Output].Columns[ExpiredDate]"
-                          dataType="dbDate"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Set New Record Effective Date.Outputs[Derived Column Output].Columns[ExpiredDate]"
-                          name="ExpiredDate"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">NULL(DT_DBDATE)</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">NULL(DT_DBDATE)</property>
+                              name="FriendlyExpression">(DT_DBDATE)(@[System::CreationDate])</property>
                           </properties>
                         </outputColumn>
                         <outputColumn
@@ -1005,6 +1098,80 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                   </outputs>
                 </component>
                 <component
+                  refId="Package\Load Big Dimensions\Load DimCustomer\Set Old Record Expired Date"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Set Old Record Expired Date"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load Big Dimensions\Load DimCustomer\Set Old Record Expired Date.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load Big Dimensions\Load DimCustomer\Set Old Record Expired Date.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Load Big Dimensions\Load DimCustomer\Set Old Record Expired Date.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Set Old Record Expired Date.Outputs[Derived Column Output].Columns[ExpiredDate]"
+                          dataType="dbDate"
+                          description="ExpiredDate"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Set Old Record Expired Date.Outputs[Derived Column Output].Columns[ExpiredDate]"
+                          name="ExpiredDate"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_DBDATE)(@[System::CreationDate])</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_DBDATE)(@[System::CreationDate])</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load Big Dimensions\Load DimCustomer\Set Old Record Expired Date.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Load Big Dimensions\Load DimCustomer\Set Old Record Expired Date.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Set Old Record Expired Date.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Set Old Record Expired Date.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Set Old Record Expired Date.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Set Old Record Expired Date.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
                   refId="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension"
                   componentClassID="Microsoft.SCD"
                   contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
@@ -1016,7 +1183,7 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                       dataType="System.String"
                       description="Specifies the SELECT statement used to create a schema rowset."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [CustomerBirthday], [CustomerID], [Gender], [GeographicRegion], [IsVipCustomer], [Language],[EffectiveDate],[ExpiredDate] FROM [dbo].[DimCustomer]</property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [Country], [CustomerBirthday], [CustomerID], [Gender], [GeographicRegion], [IsVipCustomer], [Language],[EffectiveDate],[ExpiredDate] FROM [dbo].[DimCustomer]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
@@ -1064,6 +1231,20 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                       refId="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
                       name="Slowly Changing Dimension Input">
                       <inputColumns>
+                        <inputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Name"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Country]"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Outputs[Lookup Match Output].Columns[Name]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">2</property>
+                          </properties>
+                        </inputColumn>
                         <inputColumn
                           refId="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[DateOfBirth_DT_DBDATE]"
                           cachedDataType="dbDate"
@@ -1115,7 +1296,7 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                             <property
                               dataType="System.Int32"
                               name="ColumnType"
-                              typeConverter="ColumnType">3</property>
+                              typeConverter="ColumnType">2</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -1130,7 +1311,7 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                             <property
                               dataType="System.Int32"
                               name="ColumnType"
-                              typeConverter="ColumnType">2</property>
+                              typeConverter="ColumnType">3</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
@@ -1148,9 +1329,58 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                               typeConverter="ColumnType">2</property>
                           </properties>
                         </inputColumn>
+                        <inputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Gender]"
+                          cachedDataType="wstr"
+                          cachedLength="1"
+                          cachedName="Gender"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Gender]"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Customer.Outputs[OLE DB Source Output].Columns[Gender]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">2</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Language]"
+                          cachedDataType="wstr"
+                          cachedLength="2"
+                          cachedName="Language"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Language]"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Customer.Outputs[OLE DB Source Output].Columns[Language]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">2</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[CountryName_STR]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="CountryName_STR"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Country]"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Data Conversion.Outputs[Data Conversion Output].Columns[CountryName_STR]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              name="ColumnType"
+                              typeConverter="ColumnType">2</property>
+                          </properties>
+                        </inputColumn>
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Country]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Country" />
                         <externalMetadataColumn
                           refId="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[CustomerBirthday]"
                           dataType="dbDate"
@@ -1557,6 +1787,20 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Union All.Inputs[Union All Input 1].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Name"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Outputs[Lookup Match Output].Columns[Name]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[Name]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
                           refId="Package\Load Big Dimensions\Load DimCustomer\Union All.Inputs[Union All Input 1].Columns[Gender_Transformed_STR]"
                           cachedCodepage="1252"
                           cachedDataType="str"
@@ -1625,6 +1869,21 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                               dataType="System.Int32"
                               description="Output column lineage ID"
                               name="OutputColumnLineageID">#{Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[DateOfBirth_DT_DBDATE]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Union All.Inputs[Union All Input 1].Columns[CountryName_STR]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="CountryName_STR"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Data Conversion.Outputs[Data Conversion Output].Columns[CountryName_STR]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[CountryName_STR]}</property>
                           </properties>
                         </inputColumn>
                       </inputColumns>
@@ -1798,6 +2057,20 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                           </properties>
                         </inputColumn>
                         <inputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Union All.Inputs[Union All Input 2].Columns[Name]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Name"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Outputs[Lookup Match Output].Columns[Name]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[Name]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
                           refId="Package\Load Big Dimensions\Load DimCustomer\Union All.Inputs[Union All Input 2].Columns[Gender_Transformed_STR]"
                           cachedCodepage="1252"
                           cachedDataType="str"
@@ -1866,6 +2139,21 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                               dataType="System.Int32"
                               description="Output column lineage ID"
                               name="OutputColumnLineageID">#{Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[DateOfBirth_DT_DBDATE]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Union All.Inputs[Union All Input 2].Columns[CountryName_STR]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="CountryName_STR"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Data Conversion.Outputs[Data Conversion Output].Columns[CountryName_STR]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[CountryName_STR]}</property>
                           </properties>
                         </inputColumn>
                       </inputColumns>
@@ -1951,6 +2239,12 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                           lineageId="Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[Language_Transformed]"
                           name="Language_Transformed" />
                         <outputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[Name]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[Name]"
+                          name="Name" />
+                        <outputColumn
                           refId="Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[Gender_Transformed_STR]"
                           codePage="1252"
                           dataType="str"
@@ -1981,6 +2275,13 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                           dataType="dbDate"
                           lineageId="Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[DateOfBirth_DT_DBDATE]"
                           name="DateOfBirth_DT_DBDATE" />
+                        <outputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[CountryName_STR]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Union All.Outputs[Union All Output 1].Columns[CountryName_STR]"
+                          name="CountryName_STR" />
                       </outputColumns>
                       <externalMetadataColumns />
                     </output>
@@ -2004,7 +2305,7 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                       description="The SQL command to be executed."
                       expressionType="Notify"
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DimCustomer] SET [Gender] = ?,[IsVipCustomer] = ?,[Language] = ? WHERE [CustomerID] = ?</property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DimCustomer] SET [Country] = ?,[Gender] = ?,[GeographicRegion] = ?,[Language] = ? WHERE [CustomerID] = ?</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -2027,10 +2328,18 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                       name="OLE DB Command Input">
                       <inputColumns>
                         <inputColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].Columns[CountryName_STR]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="CountryName_STR"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Data Conversion.Outputs[Data Conversion Output].Columns[CountryName_STR]" />
+                        <inputColumn
                           refId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].Columns[CustomerID]"
                           cachedDataType="i4"
                           cachedName="CustomerID"
-                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
                           lineageId="Package\Load Big Dimensions\Load DimCustomer\Customer.Outputs[OLE DB Source Output].Columns[CustomerID]" />
                         <inputColumn
                           refId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].Columns[Gender_Transformed_STR]"
@@ -2038,23 +2347,21 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                           cachedDataType="str"
                           cachedLength="1"
                           cachedName="Gender_Transformed_STR"
-                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
                           lineageId="Package\Load Big Dimensions\Load DimCustomer\Data Conversion.Outputs[Data Conversion Output].Columns[Gender_Transformed_STR]" />
                         <inputColumn
-                          refId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].Columns[IsVipCustomer_Transformed_STR]"
-                          cachedCodepage="1252"
-                          cachedDataType="str"
-                          cachedLength="1"
-                          cachedName="IsVipCustomer_Transformed_STR"
-                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Data Conversion.Outputs[Data Conversion Output].Columns[IsVipCustomer_Transformed_STR]" />
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].Columns[GeographicRegion_UI1]"
+                          cachedDataType="ui1"
+                          cachedName="GeographicRegion_UI1"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                          lineageId="Package\Load Big Dimensions\Load DimCustomer\Data Conversion.Outputs[Data Conversion Output].Columns[GeographicRegion_UI1]" />
                         <inputColumn
                           refId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].Columns[Language_Transformed_STR]"
                           cachedCodepage="1252"
                           cachedDataType="str"
                           cachedLength="2"
                           cachedName="Language_Transformed_STR"
-                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                          externalMetadataColumnId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
                           lineageId="Package\Load Big Dimensions\Load DimCustomer\Data Conversion.Outputs[Data Conversion Output].Columns[Language_Transformed_STR]" />
                       </inputColumns>
                       <externalMetadataColumns
@@ -2063,7 +2370,7 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                           refId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
                           codePage="1252"
                           dataType="str"
-                          length="1"
+                          length="50"
                           name="Param_0">
                           <properties>
                             <property
@@ -2087,9 +2394,7 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                         </externalMetadataColumn>
                         <externalMetadataColumn
                           refId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                          codePage="1252"
-                          dataType="str"
-                          length="2"
+                          dataType="ui1"
                           name="Param_2">
                           <properties>
                             <property
@@ -2100,8 +2405,21 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                         </externalMetadataColumn>
                         <externalMetadataColumn
                           refId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                          dataType="i4"
+                          codePage="1252"
+                          dataType="str"
+                          length="2"
                           name="Param_3">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                          dataType="i4"
+                          name="Param_4">
                           <properties>
                             <property
                               dataType="System.Int32"
@@ -2158,24 +2476,29 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                   startId="Package\Load Big Dimensions\Load DimCustomer\Data Conversion.Outputs[Data Conversion Output]" />
                 <path
                   refId="Package\Load Big Dimensions\Load DimCustomer.Paths[Derived Column Output]"
-                  endId="Package\Load Big Dimensions\Load DimCustomer\Data Conversion.Inputs[Data Conversion Input]"
+                  endId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Inputs[Lookup Input]"
                   name="Derived Column Output"
                   startId="Package\Load Big Dimensions\Load DimCustomer\Transform Gender and VipCustomer.Outputs[Derived Column Output]" />
                 <path
                   refId="Package\Load Big Dimensions\Load DimCustomer.Paths[Derived Column Output1]"
-                  endId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Inputs[OLE DB Command Input]"
+                  endId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Inputs[OLE DB Command Input]"
                   name="Derived Column Output"
-                  startId="Package\Load Big Dimensions\Load DimCustomer\Derived Column.Outputs[Derived Column Output]" />
+                  startId="Package\Load Big Dimensions\Load DimCustomer\Set Old Record Expired Date.Outputs[Derived Column Output]" />
                 <path
                   refId="Package\Load Big Dimensions\Load DimCustomer.Paths[Derived Column Output2]"
-                  endId="Package\Load Big Dimensions\Load DimCustomer\Insert Destination.Inputs[OLE DB Destination Input]"
+                  endId="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer.Inputs[OLE DB Destination Input]"
                   name="Derived Column Output"
                   startId="Package\Load Big Dimensions\Load DimCustomer\Set New Record Effective Date.Outputs[Derived Column Output]" />
                 <path
                   refId="Package\Load Big Dimensions\Load DimCustomer.Paths[Historical Attribute Inserts Output]"
-                  endId="Package\Load Big Dimensions\Load DimCustomer\Derived Column.Inputs[Derived Column Input]"
+                  endId="Package\Load Big Dimensions\Load DimCustomer\Set Old Record Expired Date.Inputs[Derived Column Input]"
                   name="Historical Attribute Inserts Output"
                   startId="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]" />
+                <path
+                  refId="Package\Load Big Dimensions\Load DimCustomer.Paths[Lookup Match Output]"
+                  endId="Package\Load Big Dimensions\Load DimCustomer\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Lookup Match Output"
+                  startId="Package\Load Big Dimensions\Load DimCustomer\Lookup.Outputs[Lookup Match Output]" />
                 <path
                   refId="Package\Load Big Dimensions\Load DimCustomer.Paths[New Output]"
                   endId="Package\Load Big Dimensions\Load DimCustomer\Union All.Inputs[Union All Input 1]"
@@ -2185,7 +2508,7 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
                   refId="Package\Load Big Dimensions\Load DimCustomer.Paths[OLE DB Command Output]"
                   endId="Package\Load Big Dimensions\Load DimCustomer\Union All.Inputs[Union All Input 2]"
                   name="OLE DB Command Output"
-                  startId="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record.Outputs[OLE DB Command Output]" />
+                  startId="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command.Outputs[OLE DB Command Output]" />
                 <path
                   refId="Package\Load Big Dimensions\Load DimCustomer.Paths[OLE DB Source Output]"
                   endId="Package\Load Big Dimensions\Load DimCustomer\Transform Gender and VipCustomer.Inputs[Derived Column Input]"
@@ -5373,14 +5696,14 @@ where [refTable].[CategoryID] = ?</property>
                   startId="Package\Load Big Dimensions\Load DimProduct\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]" />
                 <path
                   refId="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output1]"
-                  endId="Package\Load Big Dimensions\Load DimProduct\Union All Category.Inputs[Union All Input 1]"
-                  name="Lookup Match Output"
-                  startId="Package\Load Big Dimensions\Load DimProduct\Lookup Category.Outputs[Lookup Match Output]" />
-                <path
-                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Union All 1.Inputs[Union All Input 1]"
                   name="Lookup Match Output"
                   startId="Package\Load Big Dimensions\Load DimProduct\Lookup Box.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output]"
+                  endId="Package\Load Big Dimensions\Load DimProduct\Union All Category.Inputs[Union All Input 1]"
+                  name="Lookup Match Output"
+                  startId="Package\Load Big Dimensions\Load DimProduct\Lookup Category.Outputs[Lookup Match Output]" />
                 <path
                   refId="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup No Match Output]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Box &quot;Unknown&quot;.Inputs[Derived Column Input]"
@@ -5408,14 +5731,14 @@ where [refTable].[CategoryID] = ?</property>
                   startId="Package\Load Big Dimensions\Load DimProduct\Products.Outputs[OLE DB Source Output]" />
                 <path
                   refId="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 11]"
-                  endId="Package\Load Big Dimensions\Load DimProduct\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
-                  name="Union All Output 1"
-                  startId="Package\Load Big Dimensions\Load DimProduct\Union All 1.Outputs[Union All Output 1]" />
-                <path
-                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 1]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Set New Record Effective Date.Inputs[Derived Column Input]"
                   name="Union All Output 1"
                   startId="Package\Load Big Dimensions\Load DimProduct\Union All.Outputs[Union All Output 1]" />
+                <path
+                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 1]"
+                  endId="Package\Load Big Dimensions\Load DimProduct\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                  name="Union All Output 1"
+                  startId="Package\Load Big Dimensions\Load DimProduct\Union All 1.Outputs[Union All Output 1]" />
                 <path
                   refId="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 12]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Lookup Box.Inputs[Lookup Input]"
@@ -5464,71 +5787,57 @@ where [refTable].[CategoryID] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="120,41.6"
-          Id="Package\Load Big Dimensions\Load DimCustomer\Union All"
-          TopLeft="170.9,615.099999999999" />
-        <NodeLayout
           Size="248,41.6"
           Id="Package\Load Big Dimensions\Load DimCustomer\Transform Gender and VipCustomer"
           TopLeft="106.9,107.1" />
         <NodeLayout
-          Size="222.4,41.6"
-          Id="Package\Load Big Dimensions\Load DimCustomer\Set New Record Effective Date"
-          TopLeft="149.7,716.699999999999" />
-        <NodeLayout
-          Size="162.4,41.6"
-          Id="Package\Load Big Dimensions\Load DimCustomer\Expire Old Record"
-          TopLeft="5.50000000000003,513.5" />
-        <NodeLayout
           Size="155.2,41.6"
           Id="Package\Load Big Dimensions\Load DimCustomer\Data Conversion"
-          TopLeft="153.3,208.7" />
-        <NodeLayout
-          Size="208,41.6"
-          Id="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension"
-          TopLeft="126.9,310.3" />
-        <NodeLayout
-          Size="162.4,41.6"
-          Id="Package\Load Big Dimensions\Load DimCustomer\Insert Destination"
-          TopLeft="149.7,818.299999999999" />
-        <NodeLayout
-          Size="179.2,41.6"
-          Id="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer"
-          TopLeft="291.7,411.9" />
+          TopLeft="153.3,310.3" />
         <NodeLayout
           Size="123.2,41.6"
           Id="Package\Load Big Dimensions\Load DimCustomer\Customer"
           TopLeft="169.3,5.49999999999995" />
-        <NodeLayout
-          Size="152.8,41.6"
-          Id="Package\Load Big Dimensions\Load DimCustomer\Derived Column"
-          TopLeft="17.5,411.9" />
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[OLE DB Command Output]"
-          TopLeft="86.7,555.1">
+          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[OLE DB Source Output]"
+          TopLeft="230.9,47.1">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="125.533333333333,59.9999999999999"
+              EndConnector="0,59.9999999999999"
               Start="0,0"
-              End="125.533333333333,52.4999999999999">
+              End="0,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.5263157894736" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.5263157894736"
-                    Point2="0,35.5263157894736"
-                    Point3="4,35.5263157894736" />
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\Load Big Dimensions\Load DimCustomer\Lookup"
+          TopLeft="174.5,208.7" />
+        <EdgeLayout
+          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[Derived Column Output]"
+          TopLeft="230.9,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="121.533333333333,35.5263157894736" />
-                  <mssgle:CubicBezierSegment
-                    Point1="121.533333333333,35.5263157894736"
-                    Point2="125.533333333333,35.5263157894736"
-                    Point3="125.533333333333,39.5263157894736" />
-                  <mssgle:LineSegment
-                    End="125.533333333333,52.4999999999999" />
+                    End="0,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5538,8 +5847,140 @@ where [refTable].[CategoryID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[New Output]"
+          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[Lookup Match Output]"
+          TopLeft="230.9,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,20.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="208,41.6"
+          Id="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension"
+          TopLeft="126.9,411.9" />
+        <EdgeLayout
+          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[Data Conversion Output]"
           TopLeft="230.9,351.9">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="212,41.6"
+          Id="Package\Load Big Dimensions\Load DimCustomer\Set Old Record Expired Date"
+          TopLeft="17.5,513.5" />
+        <EdgeLayout
+          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[Historical Attribute Inserts Output]"
+          TopLeft="180.9,453.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-57.4,59.9999999999999"
+              Start="0,0"
+              End="-57.4,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.506329113924" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.506329113924"
+                    Point2="0,20.506329113924"
+                    Point3="-4,20.506329113924" />
+                  <mssgle:LineSegment
+                    End="-53.4,20.506329113924" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-53.4,20.506329113924"
+                    Point2="-57.4,20.506329113924"
+                    Point3="-57.4,24.506329113924" />
+                  <mssgle:LineSegment
+                    End="-57.4,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-103.75638671875,25.506329113924,150.1127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Load Big Dimensions\Load DimCustomer\OLE DB Command"
+          TopLeft="5.50000000000003,615.099999999999" />
+        <EdgeLayout
+          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[Derived Column Output1]"
+          TopLeft="123.5,555.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-35.6,59.9999999999999"
+              Start="0,0"
+              End="-35.6,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.9999999999999" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.9999999999999"
+                    Point2="0,29.9999999999999"
+                    Point3="-4,29.9999999999999" />
+                  <mssgle:LineSegment
+                    End="-31.6,29.9999999999999" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-31.6,29.9999999999999"
+                    Point2="-35.6,29.9999999999999"
+                    Point3="-35.6,33.9999999999999" />
+                  <mssgle:LineSegment
+                    End="-35.6,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\Load Big Dimensions\Load DimCustomer\Union All"
+          TopLeft="170.9,716.699999999999" />
+        <EdgeLayout
+          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[New Output]"
+          TopLeft="230.9,453.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -5574,50 +6015,90 @@ where [refTable].[CategoryID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[Historical Attribute Inserts Output]"
-          TopLeft="180.9,351.9">
+          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[OLE DB Command Output]"
+          TopLeft="87.9,656.699999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-87,59.9999999999999"
+              EndConnector="124.333333333333,59.9999999999999"
               Start="0,0"
-              End="-87,52.4999999999999">
+              End="124.333333333333,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.506329113924" />
+                    End="0,31.5263157894736" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16.506329113924"
-                    Point2="0,20.506329113924"
-                    Point3="-4,20.506329113924" />
+                    Point1="0,31.5263157894736"
+                    Point2="0,35.5263157894736"
+                    Point3="4,35.5263157894736" />
                   <mssgle:LineSegment
-                    End="-83,20.506329113924" />
+                    End="120.333333333333,35.5263157894736" />
                   <mssgle:CubicBezierSegment
-                    Point1="-83,20.506329113924"
-                    Point2="-87,20.506329113924"
-                    Point3="-87,24.506329113924" />
+                    Point1="120.333333333333,35.5263157894736"
+                    Point2="124.333333333333,35.5263157894736"
+                    Point3="124.333333333333,39.5263157894736" />
                   <mssgle:LineSegment
-                    End="-87,52.4999999999999" />
+                    End="124.333333333333,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-118.55638671875,25.506329113924,150.1127734375,11.609375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="222.4,41.6"
+          Id="Package\Load Big Dimensions\Load DimCustomer\Set New Record Effective Date"
+          TopLeft="149.7,818.299999999999" />
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[Derived Column Output2]"
-          TopLeft="260.9,758.299999999999">
+          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[Union All Output 1]"
+          TopLeft="230.9,758.299999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-29.9999999999999,59.9999999999999"
+              EndConnector="30,59.9999999999999"
               Start="0,0"
-              End="-29.9999999999999,52.4999999999999">
+              End="30,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.9999999999999" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.9999999999999"
+                    Point2="0,29.9999999999999"
+                    Point3="4,29.9999999999999" />
+                  <mssgle:LineSegment
+                    End="26,29.9999999999999" />
+                  <mssgle:CubicBezierSegment
+                    Point1="26,29.9999999999999"
+                    Point2="30,29.9999999999999"
+                    Point3="30,33.9999999999999" />
+                  <mssgle:LineSegment
+                    End="30,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172.8,41.6"
+          Id="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer"
+          TopLeft="149.7,919.899999999999" />
+        <EdgeLayout
+          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[Derived Column Output2]"
+          TopLeft="260.9,859.899999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-24.7999999999999,59.9999999999999"
+              Start="0,0"
+              End="-24.7999999999999,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -5628,13 +6109,13 @@ where [refTable].[CategoryID] = ?</property>
                     Point2="0,29.9999999999999"
                     Point3="-4,29.9999999999999" />
                   <mssgle:LineSegment
-                    End="-25.9999999999999,29.9999999999999" />
+                    End="-20.7999999999999,29.9999999999999" />
                   <mssgle:CubicBezierSegment
-                    Point1="-25.9999999999999,29.9999999999999"
-                    Point2="-29.9999999999999,29.9999999999999"
-                    Point3="-29.9999999999999,33.9999999999999" />
+                    Point1="-20.7999999999999,29.9999999999999"
+                    Point2="-24.7999999999999,29.9999999999999"
+                    Point3="-24.7999999999999,33.9999999999999" />
                   <mssgle:LineSegment
-                    End="-29.9999999999999,52.4999999999999" />
+                    End="-24.7999999999999,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5643,75 +6124,13 @@ where [refTable].[CategoryID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[Derived Column Output1]"
-          TopLeft="90.3,453.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[Derived Column Output]"
-          TopLeft="230.9,148.7">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[Data Conversion Output]"
-          TopLeft="230.9,250.3">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="179.2,41.6"
+          Id="Package\Load Big Dimensions\Load DimCustomer\Update DimCustomer"
+          TopLeft="291.7,513.5" />
         <EdgeLayout
           Id="Package\Load Big Dimensions\Load DimCustomer.Paths[Changing Attribute Updates Output]"
-          TopLeft="280.9,351.9">
+          TopLeft="280.9,453.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -5745,149 +6164,9 @@ where [refTable].[CategoryID] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[Union All Output 1]"
-          TopLeft="230.9,656.699999999999">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="30,59.9999999999999"
-              Start="0,0"
-              End="30,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,25.9999999999999" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,25.9999999999999"
-                    Point2="0,29.9999999999999"
-                    Point3="4,29.9999999999999" />
-                  <mssgle:LineSegment
-                    End="26,29.9999999999999" />
-                  <mssgle:CubicBezierSegment
-                    Point1="26,29.9999999999999"
-                    Point2="30,29.9999999999999"
-                    Point3="30,33.9999999999999" />
-                  <mssgle:LineSegment
-                    End="30,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimCustomer.Paths[OLE DB Source Output]"
-          TopLeft="230.9,47.1">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension">
-    <Properties>
-      <Property>
-        <Name>SCDMetadata</Name>
-        <Value
-          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SCDWizardMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;ConnectionID&gt;{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}&lt;/ConnectionID&gt;
-  &lt;TableName&gt;[dbo].[DimCustomer]&lt;/TableName&gt;
-  &lt;InputToColumnsCollection&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[DateOfBirth_DT_DBDATE]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;CustomerBirthday&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Customer.Outputs[OLE DB Source Output].Columns[CustomerID]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;CustomerID&lt;/ColumnName&gt;
-      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
-      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[Gender_Transformed_STR]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;Gender&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[GeographicRegion_UI1]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;GeographicRegion&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[IsVipCustomer_Transformed_STR]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;IsVipCustomer&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[Language_Transformed_STR]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;Language&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-  &lt;/InputToColumnsCollection&gt;
-  &lt;GeneratedComponentsIdentificationStrings&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;Derived Column&lt;/anyType&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;Union All&lt;/anyType&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;Derived Column 1&lt;/anyType&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command 1&lt;/anyType&gt;
-  &lt;/GeneratedComponentsIdentificationStrings&gt;
-  &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
-  &lt;FailChangeAttribute&gt;true&lt;/FailChangeAttribute&gt;
-  &lt;UseStartEndDate&gt;true&lt;/UseStartEndDate&gt;
-  &lt;CurrentIndicatorColumn /&gt;
-  &lt;InferredIndicatorColumn /&gt;
-  &lt;ValueCurrent /&gt;
-  &lt;ValueExpired /&gt;
-  &lt;StartDateColumn&gt;EffectiveDate&lt;/StartDateColumn&gt;
-  &lt;EndDateColumn&gt;ExpiredDate&lt;/EndDateColumn&gt;
-  &lt;DateVariable&gt;System::ContainerStartTime&lt;/DateVariable&gt;
-  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
-&lt;/SCDWizardMetadata&gt;</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Big Dimensions\Load DimCustomer\Insert Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load Big Dimensions\Load DimCustomer\Customer">
     <Properties>
@@ -5907,79 +6186,91 @@ where [refTable].[CategoryID] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="119.2,41.6"
-          Id="Package\Load Big Dimensions\Load DimProduct\Products"
-          TopLeft="182.9,5.49999999999995" />
-        <NodeLayout
-          Size="321.6,41.6"
-          Id="Package\Load Big Dimensions\Load DimProduct\Transformed Active, AvailbalePortal and Description"
-          TopLeft="81.7,107.1" />
-        <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[OLE DB Source Output]"
-          TopLeft="242.5,47.1">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="211.2,41.6"
-          Id="Package\Load Big Dimensions\Load DimProduct\Data Conversion Description"
-          TopLeft="136.9,208.7" />
-        <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output1]"
-          TopLeft="242.5,148.7">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="212,41.6"
+          Id="Package\Load Big Dimensions\Load DimProduct\Set Old Record Expired Date"
+          TopLeft="29.1000000000001,1021.5" />
         <NodeLayout
           Size="157.6,41.6"
           Id="Package\Load Big Dimensions\Load DimProduct\Lookup Category"
           TopLeft="163.7,310.3" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Load Big Dimensions\Load DimProduct\Expire Old Record"
+          TopLeft="17.1000000000001,1123.1" />
+        <NodeLayout
+          Size="165.6,41.6"
+          Id="Package\Load Big Dimensions\Load DimProduct\Union All Category"
+          TopLeft="159.7,513.5" />
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Load Big Dimensions\Load DimProduct\Union All 1"
+          TopLeft="177.7,818.299999999999" />
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\Load Big Dimensions\Load DimProduct\Union All"
+          TopLeft="182.5,1224.7" />
+        <NodeLayout
+          Size="222.4,41.6"
+          Id="Package\Load Big Dimensions\Load DimProduct\Set New Record Effective Date"
+          TopLeft="161.3,1326.3" />
+        <NodeLayout
+          Size="119.2,41.6"
+          Id="Package\Load Big Dimensions\Load DimProduct\Products"
+          TopLeft="182.9,5.49999999999995" />
+        <NodeLayout
+          Size="211.2,41.6"
+          Id="Package\Load Big Dimensions\Load DimProduct\Data Conversion Description"
+          TopLeft="136.9,208.7" />
+        <NodeLayout
+          Size="132.8,41.6"
+          Id="Package\Load Big Dimensions\Load DimProduct\Lookup Box"
+          TopLeft="176.1,615.099999999999" />
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\Load Big Dimensions\Load DimProduct\Category &quot;Unknown&quot;"
+          TopLeft="5.50000000000006,411.9" />
+        <NodeLayout
+          Size="186.4,41.6"
+          Id="Package\Load Big Dimensions\Load DimProduct\Insert Into DimProduct"
+          TopLeft="161.3,1427.9" />
+        <NodeLayout
+          Size="321.6,41.6"
+          Id="Package\Load Big Dimensions\Load DimProduct\Transformed Active, AvailbalePortal and Description"
+          TopLeft="81.7,107.1" />
+        <NodeLayout
+          Size="208,41.6"
+          Id="Package\Load Big Dimensions\Load DimProduct\Slowly Changing Dimension"
+          TopLeft="138.5,919.899999999999" />
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\Load Big Dimensions\Load DimProduct\Box &quot;Unknown&quot;"
+          TopLeft="29.9000000000001,716.699999999999" />
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Data Conversion Output]"
-          TopLeft="242.5,250.3">
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[OLE DB Command Output]"
+          TopLeft="98.3000000000001,1164.7">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
+              EndConnector="125.533333333333,60"
               Start="0,0"
-              End="0,52.4999999999999">
+              End="125.533333333333,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.4999999999999" />
+                    End="0,31.5263157894737" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5263157894737"
+                    Point2="0,35.5263157894737"
+                    Point3="4,35.5263157894737" />
+                  <mssgle:LineSegment
+                    End="121.533333333333,35.5263157894737" />
+                  <mssgle:CubicBezierSegment
+                    Point1="121.533333333333,35.5263157894737"
+                    Point2="125.533333333333,35.5263157894737"
+                    Point3="125.533333333333,39.5263157894737" />
+                  <mssgle:LineSegment
+                    End="125.533333333333,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5988,10 +6279,42 @@ where [refTable].[CategoryID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="176,41.6"
-          Id="Package\Load Big Dimensions\Load DimProduct\Category &quot;Unknown&quot;"
-          TopLeft="5.50000000000006,411.9" />
+        <EdgeLayout
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[New Output]"
+          TopLeft="275.833333333333,961.499999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14.6666666666666,263.2"
+              Start="0,0"
+              End="-14.6666666666666,255.7">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,126.695815115553" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,126.695815115553"
+                    Point2="0,130.695815115553"
+                    Point3="-4,130.695815115553" />
+                  <mssgle:LineSegment
+                    End="-10.6666666666666,130.695815115553" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.6666666666666,130.695815115553"
+                    Point2="-14.6666666666666,130.695815115553"
+                    Point3="-14.6666666666666,134.695815115553" />
+                  <mssgle:LineSegment
+                    End="-14.6666666666666,255.7" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-34.4247200520833,135.695815115553,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup No Match Output1]"
           TopLeft="217.566666666667,351.9">
@@ -6028,14 +6351,6 @@ where [refTable].[CategoryID] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="132.8,41.6"
-          Id="Package\Load Big Dimensions\Load DimProduct\Lookup Box"
-          TopLeft="176.1,615.099999999999" />
-        <NodeLayout
-          Size="151.2,41.6"
-          Id="Package\Load Big Dimensions\Load DimProduct\Box &quot;Unknown&quot;"
-          TopLeft="29.9000000000001,716.699999999999" />
         <EdgeLayout
           Id="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup No Match Output]"
           TopLeft="221.7,656.699999999999">
@@ -6072,16 +6387,32 @@ where [refTable].[CategoryID] = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="208,41.6"
-          Id="Package\Load Big Dimensions\Load DimProduct\Slowly Changing Dimension"
-          TopLeft="138.5,919.899999999999" />
-        <NodeLayout
-          Size="165.6,41.6"
-          Id="Package\Load Big Dimensions\Load DimProduct\Union All Category"
-          TopLeft="159.7,513.5" />
         <EdgeLayout
           Id="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output1]"
+          TopLeft="263.033333333333,656.699999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,161.6"
+              Start="0,0"
+              End="0,154.1">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,154.1" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,71.2453124999999,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output]"
           TopLeft="268.1,351.9">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -6101,6 +6432,42 @@ where [refTable].[CategoryID] = ?</property>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="-48.19138671875,71.2453124999999,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Historical Attribute Inserts Output]"
+          TopLeft="209.166666666667,961.499999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-74.0666666666667,59.9999999999999"
+              Start="0,0"
+              End="-74.0666666666667,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2748091603053" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2748091603053"
+                    Point2="0,24.2748091603053"
+                    Point3="-4,24.2748091603053" />
+                  <mssgle:LineSegment
+                    End="-70.0666666666667,24.2748091603053" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-70.0666666666667,24.2748091603053"
+                    Point2="-74.0666666666667,24.2748091603053"
+                    Point3="-74.0666666666667,28.2748091603053" />
+                  <mssgle:LineSegment
+                    End="-74.0666666666667,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-112.089720052083,29.2748091603053,150.1127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -6139,56 +6506,6 @@ where [refTable].[CategoryID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 12]"
-          TopLeft="242.5,555.1">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="129.6,41.6"
-          Id="Package\Load Big Dimensions\Load DimProduct\Union All 1"
-          TopLeft="177.7,818.299999999999" />
-        <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output]"
-          TopLeft="263.033333333333,656.699999999999">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,161.6"
-              Start="0,0"
-              End="0,154.1">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,154.1" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,71.2453124999999,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output3]"
           TopLeft="105.5,758.299999999999">
           <EdgeLayout.Curve>
@@ -6223,72 +6540,6 @@ where [refTable].[CategoryID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 11]"
-          TopLeft="242.5,859.899999999999">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
-              Start="0,0"
-              End="0,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="212,41.6"
-          Id="Package\Load Big Dimensions\Load DimProduct\Set Old Record Expired Date"
-          TopLeft="29.1000000000001,1021.5" />
-        <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Historical Attribute Inserts Output]"
-          TopLeft="209.166666666667,961.499999999999">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-74.0666666666667,59.9999999999999"
-              Start="0,0"
-              End="-74.0666666666667,52.4999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.2748091603053" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.2748091603053"
-                    Point2="0,24.2748091603053"
-                    Point3="-4,24.2748091603053" />
-                  <mssgle:LineSegment
-                    End="-70.0666666666667,24.2748091603053" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-70.0666666666667,24.2748091603053"
-                    Point2="-74.0666666666667,24.2748091603053"
-                    Point3="-74.0666666666667,28.2748091603053" />
-                  <mssgle:LineSegment
-                    End="-74.0666666666667,52.4999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-112.089720052083,29.2748091603053,150.1127734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="162.4,41.6"
-          Id="Package\Load Big Dimensions\Load DimProduct\Expire Old Record"
-          TopLeft="17.1000000000001,1123.1" />
-        <EdgeLayout
           Id="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output2]"
           TopLeft="135.1,1063.1">
           <EdgeLayout.Curve>
@@ -6322,72 +6573,20 @@ where [refTable].[CategoryID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="120,41.6"
-          Id="Package\Load Big Dimensions\Load DimProduct\Union All"
-          TopLeft="182.5,1224.7" />
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[New Output]"
-          TopLeft="275.833333333333,961.499999999999">
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output1]"
+          TopLeft="242.5,148.7">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-14.6666666666666,263.2"
+              EndConnector="0,59.9999999999999"
               Start="0,0"
-              End="-14.6666666666666,255.7">
+              End="0,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,126.695815115553" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,126.695815115553"
-                    Point2="0,130.695815115553"
-                    Point3="-4,130.695815115553" />
-                  <mssgle:LineSegment
-                    End="-10.6666666666666,130.695815115553" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-10.6666666666666,130.695815115553"
-                    Point2="-14.6666666666666,130.695815115553"
-                    Point3="-14.6666666666666,134.695815115553" />
-                  <mssgle:LineSegment
-                    End="-14.6666666666666,255.7" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-34.4247200520833,135.695815115553,54.1827734375,11.43359375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[OLE DB Command Output]"
-          TopLeft="98.3000000000001,1164.7">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="125.533333333333,60"
-              Start="0,0"
-              End="125.533333333333,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.5263157894737" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.5263157894737"
-                    Point2="0,35.5263157894737"
-                    Point3="4,35.5263157894737" />
-                  <mssgle:LineSegment
-                    End="121.533333333333,35.5263157894737" />
-                  <mssgle:CubicBezierSegment
-                    Point1="121.533333333333,35.5263157894737"
-                    Point2="125.533333333333,35.5263157894737"
-                    Point3="125.533333333333,39.5263157894737" />
-                  <mssgle:LineSegment
-                    End="125.533333333333,52.5" />
+                    End="0,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6396,12 +6595,86 @@ where [refTable].[CategoryID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="222.4,41.6"
-          Id="Package\Load Big Dimensions\Load DimProduct\Set New Record Effective Date"
-          TopLeft="161.3,1326.3" />
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 1]"
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output]"
+          TopLeft="272.5,1367.9">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-18,60"
+              Start="0,0"
+              End="-18,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-14,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-14,30"
+                    Point2="-18,30"
+                    Point3="-18,34" />
+                  <mssgle:LineSegment
+                    End="-18,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Data Conversion Output]"
+          TopLeft="242.5,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 12]"
+          TopLeft="242.5,555.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 11]"
           TopLeft="242.5,1266.3">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -6434,36 +6707,42 @@ where [refTable].[CategoryID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="186.4,41.6"
-          Id="Package\Load Big Dimensions\Load DimProduct\Insert Into DimProduct"
-          TopLeft="161.3,1427.9" />
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Derived Column Output]"
-          TopLeft="272.5,1367.9">
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 1]"
+          TopLeft="242.5,859.899999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-18,60"
+              EndConnector="0,59.9999999999999"
               Start="0,0"
-              End="-18,52.5">
+              End="0,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="-4,30" />
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[OLE DB Source Output]"
+          TopLeft="242.5,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="-14,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-14,30"
-                    Point2="-18,30"
-                    Point3="-18,34" />
-                  <mssgle:LineSegment
-                    End="-18,52.5" />
+                    End="0,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -6614,6 +6893,119 @@ where [refTable].[CategoryID] = ?</property>
   &lt;DateVariable&gt;System::CreationDate&lt;/DateVariable&gt;
   &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
 &lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Big Dimensions\Load DimCustomer\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Countries]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionID&gt;{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[dbo].[DimCustomer]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[CountryName_STR]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Country&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[DateOfBirth_DT_DBDATE]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;CustomerBirthday&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Customer.Outputs[OLE DB Source Output].Columns[CustomerID]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;CustomerID&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[Gender_Transformed_STR]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Gender&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[GeographicRegion_UI1]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;GeographicRegion&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[IsVipCustomer_Transformed_STR]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;IsVipCustomer&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[Language_Transformed_STR]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Language&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Union All&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column 1&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command 1&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;true&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;true&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn /&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent /&gt;
+  &lt;ValueExpired /&gt;
+  &lt;StartDateColumn&gt;EffectiveDate&lt;/StartDateColumn&gt;
+  &lt;EndDateColumn&gt;ExpiredDate&lt;/EndDateColumn&gt;
+  &lt;DateVariable&gt;System::CreationDate&lt;/DateVariable&gt;
+  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
