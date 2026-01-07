@@ -11,8 +11,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="LoadTemporalDimensions"
   DTS:PackageType="5"
-  DTS:VersionBuild="25"
-  DTS:VersionGUID="{6C1C7384-7030-471D-9DAC-F0B6C95F4897}">
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{11A6171C-D5FB-4235-9959-BE21DE038758}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -729,6 +729,7 @@
     <DTS:Executable
       DTS:refId="Package\Load Temporal Dimensions"
       DTS:CreationName="STOCK:SEQUENCE"
+      DTS:DelayValidation="True"
       DTS:Description="Sequence Container"
       DTS:DTSID="{D1313DBE-8060-4542-901E-02135B6AB8F9}"
       DTS:ExecutableType="STOCK:SEQUENCE"
@@ -739,6 +740,7 @@
         <DTS:Executable
           DTS:refId="Package\Load Temporal Dimensions\Is DimDate empty?"
           DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{BE760CF9-9729-49EA-9C6B-9A8DE4BCCA36}"
           DTS:ExecutableType="Microsoft.Pipeline"
@@ -1163,6 +1165,7 @@
         <DTS:Executable
           DTS:refId="Package\Load Temporal Dimensions\Load DimDate"
           DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{F91ABC35-4C05-472A-BA67-34B6961781BB}"
           DTS:ExecutableType="Microsoft.Pipeline"
@@ -2301,13 +2304,13 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="144.8,41.6"
-          Id="Package\Load Temporal Dimensions\Load DimDate"
-          TopLeft="61.7428578073274,208.647058531951" />
-        <NodeLayout
           Size="168.8,41.6"
           Id="Package\Load Temporal Dimensions\Is DimDate empty?"
           TopLeft="49.5142863544275,66.4470586572965" />
+        <NodeLayout
+          Size="144.8,41.6"
+          Id="Package\Load Temporal Dimensions\Load DimDate"
+          TopLeft="61.7428578073274,208.647058531951" />
         <EdgeLayout
           Id="Package\Load Temporal Dimensions.PrecedenceConstraints[Constraint]"
           TopLeft="134.028572080877,108.047058657296">
@@ -2342,57 +2345,6 @@
       </GraphLayout>
     </LayoutInfo>
   </Package>
-  <TaskHost
-    design-time-name="Package\Load Temporal Dimensions\Load DimDate">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\Load Temporal Dimensions\Load DimDate\OLE DB Destination"
-          TopLeft="340.000000723771,198.058823355806" />
-        <NodeLayout
-          Size="140.8,41.6"
-          Id="Package\Load Temporal Dimensions\Load DimDate\CSV DimDate"
-          TopLeft="351.428572176671,70.3529411148035" />
-        <EdgeLayout
-          Id="Package\Load Temporal Dimensions\Load DimDate.Paths[Flat File Source Output]"
-          TopLeft="423.514286450221,111.952941114804">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,86.1058822410021"
-              Start="0,0"
-              End="0,78.6058822410021">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,78.6058822410021" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Temporal Dimensions\Load DimDate\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Load Temporal Dimensions\Is DimDate empty?">
     <LayoutInfo>
@@ -2433,6 +2385,57 @@
   </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\Load Temporal Dimensions\Is DimDate empty?\DimDate">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Load Temporal Dimensions\Load DimDate">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Load Temporal Dimensions\Load DimDate\OLE DB Destination"
+          TopLeft="340.000000723771,198.058823355806" />
+        <NodeLayout
+          Size="140.8,41.6"
+          Id="Package\Load Temporal Dimensions\Load DimDate\CSV DimDate"
+          TopLeft="351.428572176671,70.3529411148035" />
+        <EdgeLayout
+          Id="Package\Load Temporal Dimensions\Load DimDate.Paths[Flat File Source Output]"
+          TopLeft="423.514286450221,111.952941114804">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86.1058822410021"
+              Start="0,0"
+              End="0,78.6058822410021">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.6058822410021" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Temporal Dimensions\Load DimDate\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

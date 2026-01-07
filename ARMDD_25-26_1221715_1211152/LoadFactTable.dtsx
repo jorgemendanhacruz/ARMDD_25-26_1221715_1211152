@@ -11,8 +11,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="LoadFactTable"
   DTS:PackageType="5"
-  DTS:VersionBuild="11"
-  DTS:VersionGUID="{786A5BB6-5CA3-4F57-903B-2B30C7C92DCD}">
+  DTS:VersionBuild="53"
+  DTS:VersionGUID="{7E9A1CCE-64F6-4EA0-ADC9-6B716A2FCA58}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -20,6 +20,7 @@
     <DTS:Executable
       DTS:refId="Package\Load Fact Sales"
       DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{8916A214-F7FE-49A5-BD83-BB2BA63251FC}"
       DTS:ExecutableType="Microsoft.Pipeline"
@@ -31,6 +32,191 @@
         <pipeline
           version="1">
           <components>
+            <component
+              refId="Package\Load Fact Sales\CalculateStandardCurrency"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="CalculateStandardCurrency"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load Fact Sales\CalculateStandardCurrency.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Fact Sales\CalculateStandardCurrency.Inputs[Derived Column Input].Columns[UnitPriceStandard_Transformed]"
+                      cachedDataType="numeric"
+                      cachedName="UnitPriceStandard_Transformed"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Fact Sales\Transforming columns - Avoiding Nulls and Different Date formats.Outputs[Derived Column Output].Columns[UnitPriceStandard_Transformed]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Load Fact Sales\Transforming columns - Avoiding Nulls and Different Date formats.Outputs[Derived Column Output].Columns[UnitPriceStandard_Transformed]} * #{Package\Load Fact Sales\Lookup FactCurrency.Outputs[Lookup Match Output].Columns[DestinationSourceExchangeRate]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">UnitPriceStandard_Transformed * DestinationSourceExchangeRate</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Fact Sales\CalculateStandardCurrency.Inputs[Derived Column Input].Columns[ShippingCostStandard_Transformed]"
+                      cachedDataType="numeric"
+                      cachedName="ShippingCostStandard_Transformed"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Fact Sales\Transforming columns - Avoiding Nulls and Different Date formats.Outputs[Derived Column Output].Columns[ShippingCostStandard_Transformed]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Load Fact Sales\Transforming columns - Avoiding Nulls and Different Date formats.Outputs[Derived Column Output].Columns[ShippingCostStandard_Transformed]} * #{Package\Load Fact Sales\Lookup FactCurrency.Outputs[Lookup Match Output].Columns[DestinationSourceExchangeRate]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ShippingCostStandard_Transformed * DestinationSourceExchangeRate</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Fact Sales\CalculateStandardCurrency.Inputs[Derived Column Input].Columns[DestinationSourceExchangeRate]"
+                      cachedDataType="numeric"
+                      cachedName="DestinationSourceExchangeRate"
+                      cachedPrecision="10"
+                      cachedScale="4"
+                      lineageId="Package\Load Fact Sales\Lookup FactCurrency.Outputs[Lookup Match Output].Columns[DestinationSourceExchangeRate]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\CalculateStandardCurrency.Inputs[Derived Column Input].Columns[PromotionDiscountStandard_Transformed]"
+                      cachedDataType="numeric"
+                      cachedName="PromotionDiscountStandard_Transformed"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Fact Sales\Transforming columns - Avoiding Nulls and Different Date formats.Outputs[Derived Column Output].Columns[PromotionDiscountStandard_Transformed]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Load Fact Sales\Transforming columns - Avoiding Nulls and Different Date formats.Outputs[Derived Column Output].Columns[PromotionDiscountStandard_Transformed]} * #{Package\Load Fact Sales\Lookup FactCurrency.Outputs[Lookup Match Output].Columns[DestinationSourceExchangeRate]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">PromotionDiscountStandard_Transformed * DestinationSourceExchangeRate</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Fact Sales\CalculateStandardCurrency.Inputs[Derived Column Input].Columns[ShippingCostLocal]"
+                      cachedDataType="cy"
+                      cachedName="ShippingCostLocal"
+                      lineageId="Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShippingCostLocal]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\CalculateStandardCurrency.Inputs[Derived Column Input].Columns[UnitPriceLocal]"
+                      cachedDataType="numeric"
+                      cachedName="UnitPriceLocal"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      lineageId="Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[UnitPriceLocal]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\CalculateStandardCurrency.Inputs[Derived Column Input].Columns[PromotionDiscountLocal]"
+                      cachedDataType="numeric"
+                      cachedName="PromotionDiscountLocal"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      lineageId="Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[PromotionDiscountLocal]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\CalculateStandardCurrency.Inputs[Derived Column Input].Columns[TotalAmountLocal]"
+                      cachedDataType="numeric"
+                      cachedName="TotalAmountLocal"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[TotalAmountLocal]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[UnitPriceLocal]} - #{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[DiscountLocal]} + #{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShippingCostLocal]} - #{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[PromotionDiscountLocal]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">UnitPriceLocal - DicountLocal + ShippingCostLocal - PromotionDiscountLocal</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Load Fact Sales\CalculateStandardCurrency.Inputs[Derived Column Input].Columns[DicountLocal]"
+                      cachedDataType="numeric"
+                      cachedName="DiscountLocal"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      lineageId="Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[DiscountLocal]"
+                      name="DicountLocal" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Fact Sales\CalculateStandardCurrency.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load Fact Sales\CalculateStandardCurrency.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Fact Sales\CalculateStandardCurrency.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load Fact Sales\CalculateStandardCurrency.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fact Sales\CalculateStandardCurrency.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact Sales\CalculateStandardCurrency.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Fact Sales\CalculateStandardCurrency.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact Sales\CalculateStandardCurrency.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
             <component
               refId="Package\Load Fact Sales\Lookup CountryCode"
               componentClassID="Microsoft.Lookup"
@@ -1291,6 +1477,165 @@ where [refTable].[SizeID] = ?</property>
               </outputs>
             </component>
             <component
+              refId="Package\Load Fact Sales\Lookup FactCurrency"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup FactCurrency"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[FactCurrencyRate]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[FactCurrencyRate]) [refTable]
+where [refTable].[SourceCurrencyKey] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ConversionDateKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SourceCurrencyKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DestinationCurrencyKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SourceDestinationExchangeRate" dataType="DT_NUMERIC" length="0" precision="10" scale="4" codePage="0"/&gt;&lt;referenceColumn name="DestinationSourceExchangeRate" dataType="DT_NUMERIC" length="0" precision="10" scale="4" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Load Fact Sales\Lookup DimCurrency.Outputs[Lookup Match Output].Columns[CurrencyKey]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Fact Sales\Lookup FactCurrency.Connections[OleDbConnection]"
+                  connectionManagerID="{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[(local).PlusOrders_DataMart]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Fact Sales\Lookup FactCurrency.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Fact Sales\Lookup FactCurrency.Inputs[Lookup Input].Columns[CurrencyKey]"
+                      cachedDataType="i4"
+                      cachedName="CurrencyKey"
+                      lineageId="Package\Load Fact Sales\Lookup DimCurrency.Outputs[Lookup Match Output].Columns[CurrencyKey]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">SourceCurrencyKey</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Fact Sales\Lookup FactCurrency.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Load Fact Sales\Lookup FactCurrency.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fact Sales\Lookup FactCurrency.Outputs[Lookup Match Output].Columns[DestinationSourceExchangeRate]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load Fact Sales\Lookup FactCurrency.Outputs[Lookup Match Output].Columns[DestinationSourceExchangeRate]"
+                      name="DestinationSourceExchangeRate"
+                      precision="10"
+                      scale="4"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DestinationSourceExchangeRate</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Fact Sales\Lookup FactCurrency.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Load Fact Sales\Lookup FactCurrency.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Fact Sales\Lookup FactCurrency.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Load Fact Sales\Lookup FactCurrency.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fact Sales\Lookup FactCurrency.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact Sales\Lookup FactCurrency.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Fact Sales\Lookup FactCurrency.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact Sales\Lookup FactCurrency.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Load Fact Sales\OLE DB Destination"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -1469,6 +1814,22 @@ where [refTable].[SizeID] = ?</property>
                       externalMetadataColumnId="Package\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UnitPriceStandard]"
                       lineageId="Package\Load Fact Sales\Transforming columns - Avoiding Nulls and Different Date formats.Outputs[Derived Column Output].Columns[UnitPriceStandard_Transformed]" />
                     <inputColumn
+                      refId="Package\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ShippingCostStandard_Transformed]"
+                      cachedDataType="numeric"
+                      cachedName="ShippingCostStandard_Transformed"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShippingCostStandard]"
+                      lineageId="Package\Load Fact Sales\Transforming columns - Avoiding Nulls and Different Date formats.Outputs[Derived Column Output].Columns[ShippingCostStandard_Transformed]" />
+                    <inputColumn
+                      refId="Package\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TotalAmountStandard_Transformed]"
+                      cachedDataType="numeric"
+                      cachedName="TotalAmountStandard_Transformed"
+                      cachedPrecision="12"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalAmountStandard]"
+                      lineageId="Package\Load Fact Sales\Transforming columns - Avoiding Nulls and Different Date formats.Outputs[Derived Column Output].Columns[TotalAmountStandard_Transformed]" />
+                    <inputColumn
                       refId="Package\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DiscountStandard_Transformed]"
                       cachedDataType="numeric"
                       cachedName="DiscountStandard_Transformed"
@@ -1484,22 +1845,6 @@ where [refTable].[SizeID] = ?</property>
                       cachedScale="4"
                       externalMetadataColumnId="Package\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PromotionDiscountStandard]"
                       lineageId="Package\Load Fact Sales\Transforming columns - Avoiding Nulls and Different Date formats.Outputs[Derived Column Output].Columns[PromotionDiscountStandard_Transformed]" />
-                    <inputColumn
-                      refId="Package\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ShippingCostStandard_Transformed]"
-                      cachedDataType="numeric"
-                      cachedName="ShippingCostStandard_Transformed"
-                      cachedPrecision="19"
-                      cachedScale="4"
-                      externalMetadataColumnId="Package\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ShippingCostStandard]"
-                      lineageId="Package\Load Fact Sales\Transforming columns - Avoiding Nulls and Different Date formats.Outputs[Derived Column Output].Columns[ShippingCostStandard_Transformed]" />
-                    <inputColumn
-                      refId="Package\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TotalAmountStandard_Transformed]"
-                      cachedDataType="numeric"
-                      cachedName="TotalAmountStandard_Transformed"
-                      cachedPrecision="12"
-                      cachedScale="4"
-                      externalMetadataColumnId="Package\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TotalAmountStandard]"
-                      lineageId="Package\Load Fact Sales\Transforming columns - Avoiding Nulls and Different Date formats.Outputs[Derived Column Output].Columns[TotalAmountStandard_Transformed]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2059,6 +2404,82 @@ LEFT JOIN dbo.OrdersLinesDetails old
               </outputs>
             </component>
             <component
+              refId="Package\Load Fact Sales\TransformExchangeRate"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="TransformExchangeRate"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Load Fact Sales\TransformExchangeRate.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Fact Sales\TransformExchangeRate.Inputs[Derived Column Input].Columns[DestinationSourceExchangeRate]"
+                      cachedDataType="numeric"
+                      cachedName="DestinationSourceExchangeRate"
+                      cachedPrecision="10"
+                      cachedScale="4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Load Fact Sales\Lookup FactCurrency.Outputs[Lookup Match Output].Columns[DestinationSourceExchangeRate]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_NUMERIC,18,6)#{Package\Load Fact Sales\Lookup FactCurrency.Outputs[Lookup Match Output].Columns[DestinationSourceExchangeRate]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_NUMERIC,18,6)DestinationSourceExchangeRate</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Fact Sales\TransformExchangeRate.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Load Fact Sales\TransformExchangeRate.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Load Fact Sales\TransformExchangeRate.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Load Fact Sales\TransformExchangeRate.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fact Sales\TransformExchangeRate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact Sales\TransformExchangeRate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Fact Sales\TransformExchangeRate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact Sales\TransformExchangeRate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Load Fact Sales\Transforming columns - Avoiding Nulls and Different Date formats"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -2158,13 +2579,13 @@ LEFT JOIN dbo.OrdersLinesDetails old
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">[ISNULL](#{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[UnitPriceLocal]}) ? (DT_NUMERIC,12,4)0 : #{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[UnitPriceLocal]}</property>
+                          name="Expression">[ISNULL](#{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[UnitPriceLocal]}) ? (DT_NUMERIC,12,4)0 : (DT_NUMERIC,12,4)#{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[UnitPriceLocal]}</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">ISNULL(UnitPriceLocal) ? (DT_NUMERIC,12,4)0 : UnitPriceLocal</property>
+                          name="FriendlyExpression">ISNULL(UnitPriceLocal) ? (DT_NUMERIC,12,4)0 : (DT_NUMERIC,12,4)UnitPriceLocal</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -2182,13 +2603,13 @@ LEFT JOIN dbo.OrdersLinesDetails old
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">[ISNULL](#{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[DiscountLocal]}) ? (DT_NUMERIC,12,4)0 : #{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[DiscountLocal]}</property>
+                          name="Expression">[ISNULL](#{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[DiscountLocal]}) ? (DT_NUMERIC,12,4)0 : (DT_NUMERIC,12,4)#{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[DiscountLocal]}</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">ISNULL(DiscountLocal) ? (DT_NUMERIC,12,4)0 : DiscountLocal</property>
+                          name="FriendlyExpression">ISNULL(DiscountLocal) ? (DT_NUMERIC,12,4)0 : (DT_NUMERIC,12,4)DiscountLocal</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -2206,13 +2627,13 @@ LEFT JOIN dbo.OrdersLinesDetails old
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">[ISNULL](#{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[PromotionDiscountLocal]}) ? (DT_NUMERIC,12,4)0 : #{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[PromotionDiscountLocal]}</property>
+                          name="Expression">[ISNULL](#{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[PromotionDiscountLocal]}) ? (DT_NUMERIC,12,4)0 : (DT_NUMERIC,12,4)#{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[PromotionDiscountLocal]}</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">ISNULL(PromotionDiscountLocal) ? (DT_NUMERIC,12,4)0 : PromotionDiscountLocal</property>
+                          name="FriendlyExpression">ISNULL(PromotionDiscountLocal) ? (DT_NUMERIC,12,4)0 : (DT_NUMERIC,12,4)PromotionDiscountLocal</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -2222,7 +2643,7 @@ LEFT JOIN dbo.OrdersLinesDetails old
                       errorRowDisposition="FailComponent"
                       lineageId="Package\Load Fact Sales\Transforming columns - Avoiding Nulls and Different Date formats.Outputs[Derived Column Output].Columns[ShippingCostStandard_Transformed]"
                       name="ShippingCostStandard_Transformed"
-                      precision="19"
+                      precision="12"
                       scale="4"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -2230,13 +2651,13 @@ LEFT JOIN dbo.OrdersLinesDetails old
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">[ISNULL](#{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShippingCostLocal]}) ? (DT_NUMERIC,12,4)0 : #{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShippingCostLocal]}</property>
+                          name="Expression">[ISNULL](#{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShippingCostLocal]}) ? (DT_NUMERIC,12,4)0 : (DT_NUMERIC,12,4)#{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShippingCostLocal]}</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">ISNULL(ShippingCostLocal) ? (DT_NUMERIC,12,4)0 : ShippingCostLocal</property>
+                          name="FriendlyExpression">ISNULL(ShippingCostLocal) ? (DT_NUMERIC,12,4)0 : (DT_NUMERIC,12,4)ShippingCostLocal</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -2254,13 +2675,13 @@ LEFT JOIN dbo.OrdersLinesDetails old
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">[ISNULL](#{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[TotalAmountLocal]}) ? (DT_NUMERIC,12,4)0 : #{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[TotalAmountLocal]}</property>
+                          name="Expression">[ISNULL](#{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[TotalAmountLocal]}) ? (DT_NUMERIC,12,4)0 : (DT_NUMERIC,12,4)#{Package\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[TotalAmountLocal]}</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">ISNULL(TotalAmountLocal) ? (DT_NUMERIC,12,4)0 : TotalAmountLocal</property>
+                          name="FriendlyExpression">ISNULL(TotalAmountLocal) ? (DT_NUMERIC,12,4)0 : (DT_NUMERIC,12,4)TotalAmountLocal</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -2299,6 +2720,16 @@ LEFT JOIN dbo.OrdersLinesDetails old
               name="Derived Column Output"
               startId="Package\Load Fact Sales\Transforming columns - Avoiding Nulls and Different Date formats.Outputs[Derived Column Output]" />
             <path
+              refId="Package\Load Fact Sales.Paths[Derived Column Output1]"
+              endId="Package\Load Fact Sales\CalculateStandardCurrency.Inputs[Derived Column Input]"
+              name="Derived Column Output"
+              startId="Package\Load Fact Sales\TransformExchangeRate.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Load Fact Sales.Paths[Derived Column Output2]"
+              endId="Package\Load Fact Sales\Lookup CountryCode.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Load Fact Sales\CalculateStandardCurrency.Outputs[Derived Column Output]" />
+            <path
               refId="Package\Load Fact Sales.Paths[Lookup Match Output]"
               endId="Package\Load Fact Sales\Lookup DimProduct.Inputs[Lookup Input]"
               name="Lookup Match Output"
@@ -2325,19 +2756,24 @@ LEFT JOIN dbo.OrdersLinesDetails old
               startId="Package\Load Fact Sales\Lookup DimSite.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Load Fact Sales.Paths[Lookup Match Output5]"
-              endId="Package\Load Fact Sales\Lookup CountryCode.Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Load Fact Sales\Lookup DimCurrency.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Load Fact Sales.Paths[Lookup Match Output6]"
               endId="Package\Load Fact Sales\Lookup DimShipping.Inputs[Lookup Input]"
               name="Lookup Match Output"
               startId="Package\Load Fact Sales\Lookup CountryCode.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load Fact Sales.Paths[Lookup Match Output6]"
+              endId="Package\Load Fact Sales\Lookup FactCurrency.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Load Fact Sales\Lookup DimCurrency.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Load Fact Sales.Paths[Lookup Match Output7]"
               endId="Package\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input]"
               name="Lookup Match Output"
               startId="Package\Load Fact Sales\Lookup DimShipping.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Load Fact Sales.Paths[Lookup Match Output8]"
+              endId="Package\Load Fact Sales\TransformExchangeRate.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\Load Fact Sales\Lookup FactCurrency.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Load Fact Sales.Paths[OLE DB Source Output]"
               endId="Package\Load Fact Sales\Transforming columns - Avoiding Nulls and Different Date formats.Inputs[Derived Column Input]"
@@ -2373,65 +2809,75 @@ LEFT JOIN dbo.OrdersLinesDetails old
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\Load Fact Sales\Lookup FactCurrency"
+          TopLeft="366.666667447204,331.372548729147" />
+        <NodeLayout
+          Size="175.2,41.6"
+          Id="Package\Load Fact Sales\Lookup DimShipping"
+          TopLeft="621.428572751429,438.414379037972" />
+        <NodeLayout
+          Size="179.2,41.6"
+          Id="Package\Load Fact Sales\Lookup DimCustomer"
+          TopLeft="359.603175368675,226.959476986251" />
+        <NodeLayout
+          Size="193.6,41.6"
+          Id="Package\Load Fact Sales\TransformExchangeRate"
+          TopLeft="606.349207639964,331.594771039997" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Load Fact Sales\OLE DB Destination"
+          TopLeft="892.460319360131,439.132026156005" />
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Load Fact Sales\Lookup DimSite"
+          TopLeft="861.90476373953,229.316339872334" />
+        <NodeLayout
+          Size="156.8,41.6"
+          Id="Package\Load Fact Sales\Lookup DimDate"
+          TopLeft="722.460318998245,110.202614282488" />
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\Load Fact Sales\Lookup CountryCode"
+          TopLeft="344.365080098142,446.602614259698" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Load Fact Sales\Lookup DimSize"
+          TopLeft="632.777779124796,226.027450917608" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Load Fact Sales\Lookup DimProduct"
+          TopLeft="95.3968255999001,222.104574968715" />
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\Load Fact Sales\Lookup DimCurrency"
+          TopLeft="75.7936509549955,328.25882350394" />
+        <NodeLayout
           Size="149.6,41.6"
           Id="Package\Load Fact Sales\OLE DB Source"
           TopLeft="279.28571488024,46.6470587826414" />
         <NodeLayout
           Size="389.6,41.6"
           Id="Package\Load Fact Sales\Transforming columns - Avoiding Nulls and Different Date formats"
-          TopLeft="151.428571750923,113.941176370714" />
-        <EdgeLayout
-          Id="Package\Load Fact Sales.Paths[OLE DB Source Output]"
-          TopLeft="350.157143315582,88.2470587826414">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,25.694117588073"
-              Start="0,0"
-              End="0,18.194117588073">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,18.194117588073" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          TopLeft="158.571428908985,114.790849572584" />
         <NodeLayout
-          Size="156.8,41.6"
-          Id="Package\Load Fact Sales\Lookup DimDate"
-          TopLeft="276.428572017015,193.47058806571" />
+          Size="204.8,41.6"
+          Id="Package\Load Fact Sales\CalculateStandardCurrency"
+          TopLeft="870.555557408739,334.771241536625" />
         <EdgeLayout
           Id="Package\Load Fact Sales.Paths[Derived Column Output]"
-          TopLeft="346.228571750923,155.541176370714">
+          TopLeft="548.171428908985,133.296731927536">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="8.6000002660922,37.9294116949951"
+              EndConnector="174.28889008926,0"
               Start="0,0"
-              End="8.6000002660922,30.4294116949951">
+              End="166.78889008926,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14.9647058474975" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,14.9647058474975"
-                    Point2="0,18.9647058474975"
-                    Point3="4,18.9647058474975" />
-                  <mssgle:LineSegment
-                    End="4.6000002660922,18.9647058474975" />
-                  <mssgle:CubicBezierSegment
-                    Point1="4.6000002660922,18.9647058474975"
-                    Point2="8.6000002660922,18.9647058474975"
-                    Point3="8.6000002660922,22.9647058474975" />
-                  <mssgle:LineSegment
-                    End="8.6000002660922,30.4294116949951" />
+                    End="166.78889008926,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2440,408 +2886,356 @@ LEFT JOIN dbo.OrdersLinesDetails old
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\Load Fact Sales\Lookup DimProduct"
-          TopLeft="270.000000574759,272.235293879022" />
         <EdgeLayout
-          Id="Package\Load Fact Sales.Paths[Lookup Match Output]"
-          TopLeft="355.014286295887,235.07058806571">
+          Id="Package\Load Fact Sales.Paths[OLE DB Source Output]"
+          TopLeft="353.728571894613,88.2470587826414">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,37.1647058133127"
+              EndConnector="0,26.5437907899422"
               Start="0,0"
-              End="0,29.6647058133127">
+              End="0,19.0437907899422">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29.6647058133127" />
+                    End="0,19.0437907899422" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Fact Sales.Paths[Lookup Match Output8]"
+          TopLeft="544.266667447204,352.283659884572">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="62.0825401927608,0"
+              Start="0,0"
+              End="54.5825401927608,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="54.5825401927608,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,9.02766540665633,96.3827734375,11.609375"
+              BoundingBox="-20.9001166223696,5,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="179.2,41.6"
-          Id="Package\Load Fact Sales\Lookup DimCustomer"
-          TopLeft="270.714286290565,358.65882327604" />
-        <EdgeLayout
-          Id="Package\Load Fact Sales.Paths[Lookup Match Output1]"
-          TopLeft="357.757143432662,313.835293879022">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,44.8235293970183"
-              Start="0,0"
-              End="0,37.3235293970183">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,37.3235293970183" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,12.8570771985092,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="152.8,41.6"
-          Id="Package\Load Fact Sales\Lookup DimSize"
-          TopLeft="283.571429175078,442.694117394358" />
-        <EdgeLayout
-          Id="Package\Load Fact Sales.Paths[Lookup Match Output2]"
-          TopLeft="360.142857732822,400.258823276041">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,42.4352941183174"
-              Start="0,0"
-              End="0,34.9352941183174">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,34.9352941183174" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,11.6629595591587,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="152,41.6"
-          Id="Package\Load Fact Sales\Lookup DimSite"
-          TopLeft="285.714286322496,524.152940921088" />
-        <EdgeLayout
-          Id="Package\Load Fact Sales.Paths[Lookup Match Output3]"
-          TopLeft="360.842857748787,484.294117394358">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,39.8588235267305"
-              Start="0,0"
-              End="0,32.3588235267305">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,32.3588235267305" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,10.3747242633653,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="176,41.6"
-          Id="Package\Load Fact Sales\Lookup DimCurrency"
-          TopLeft="272.857143437984,602.023529146328" />
-        <EdgeLayout
-          Id="Package\Load Fact Sales.Paths[Lookup Match Output4]"
-          TopLeft="361.28571488024,565.752940921088">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,36.2705882252396"
-              Start="0,0"
-              End="0,28.7705882252396">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,28.7705882252396" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,8.58060661261982,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="176,41.6"
-          Id="Package\Load Fact Sales\Lookup CountryCode"
-          TopLeft="276.428572017015,675.929411444305" />
-        <EdgeLayout
-          Id="Package\Load Fact Sales.Paths[Lookup Match Output5]"
-          TopLeft="362.6428577275,643.623529146328">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,32.3058822979771"
-              Start="0,0"
-              End="0,24.8058822979771">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,24.8058822979771" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,6.59825364898853,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="175.2,41.6"
-          Id="Package\Load Fact Sales\Lookup DimShipping"
-          TopLeft="282.142857743465,752.623529089353" />
-        <EdgeLayout
-          Id="Package\Load Fact Sales.Paths[Lookup Match Output6]"
-          TopLeft="367.08571488024,717.529411444305">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,35.094117645048"
-              Start="0,0"
-              End="0,27.594117645048">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,27.594117645048" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,7.99237132252398,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\Load Fact Sales\OLE DB Destination"
-          TopLeft="282.142857743465,816.341176142814" />
         <EdgeLayout
           Id="Package\Load Fact Sales.Paths[Lookup Match Output7]"
-          TopLeft="457.342857743465,773.423529089353">
+          TopLeft="796.628572751429,459.573202596988">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-4.7999999999999,63.7176470534611"
+              EndConnector="95.8317466087025,0"
               Start="0,0"
-              End="2.7000000000001,63.7176470534611">
+              End="88.3317466087025,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="18.5,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="18.5,0"
-                    Point2="22.5,0"
-                    Point3="22.5,4" />
-                  <mssgle:LineSegment
-                    End="22.5,59.7176470534611" />
-                  <mssgle:CubicBezierSegment
-                    Point1="22.5,59.7176470534611"
-                    Point2="22.5,63.7176470534611"
-                    Point3="18.5,63.7176470534611" />
-                  <mssgle:LineSegment
-                    End="2.7000000000001,63.7176470534611" />
+                    End="88.3317466087025,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-25.69138671875,-17.609375,96.3827734375,11.609375"
+              BoundingBox="-4.02551341439877,5,96.3827734375,11.609375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Fact Sales.Paths[Lookup Match Output6]"
+          TopLeft="251.793650954995,350.615686116544">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="114.873016492208,0"
+              Start="0,0"
+              End="107.373016492208,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="107.373016492208,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="5.49512152735399,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Fact Sales.Paths[Lookup Match Output5]"
+          TopLeft="520.365080098142,467.402614259698">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="101.063492653287,-8.18823522172562"
+              Start="0,0"
+              End="93.5634926532871,-8.18823522172562">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="46.5317463266435,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46.5317463266435,0"
+                    Point2="50.5317463266435,0"
+                    Point3="50.5317463266435,-4" />
+                  <mssgle:LineSegment
+                    End="50.5317463266435,-4.18823522172562" />
+                  <mssgle:CubicBezierSegment
+                    Point1="50.5317463266435,-4.18823522172562"
+                    Point2="50.5317463266435,-8.18823522172562"
+                    Point3="54.5317463266435,-8.18823522172562" />
+                  <mssgle:LineSegment
+                    End="93.5634926532871,-8.18823522172562" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="2.34035960789354,1,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Fact Sales.Paths[Lookup Match Output4]"
+          TopLeft="937.90476373953,270.916339872334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-774.111112784535,57.3424836316061"
+              Start="0,0"
+              End="-774.111112784535,49.8424836316061">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.671241815803" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.671241815803"
+                    Point2="0,28.671241815803"
+                    Point3="-4,28.671241815803" />
+                  <mssgle:LineSegment
+                    End="-770.111112784535,28.671241815803" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-770.111112784535,28.671241815803"
+                    Point2="-774.111112784535,28.671241815803"
+                    Point3="-774.111112784535,32.671241815803" />
+                  <mssgle:LineSegment
+                    End="-774.111112784535,49.8424836316061" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-435.246943111017,33.671241815803,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Fact Sales.Paths[Lookup Match Output3]"
+          TopLeft="785.577779124796,248.471895394971">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="76.3269846147346,0"
+              Start="0,0"
+              End="68.8269846147346,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="68.8269846147346,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-13.7778944113827,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Fact Sales.Paths[Lookup Match Output2]"
+          TopLeft="538.803175368675,247.293463951929">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="93.9746037561207,0"
+              Start="0,0"
+              End="86.4746037561207,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="86.4746037561207,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-4.95408484068965,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Fact Sales.Paths[Lookup Match Output1]"
+          TopLeft="265.7968255999,245.332025977483">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="93.8063497687749,0"
+              Start="0,0"
+              End="86.3063497687749,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="86.3063497687749,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-5.03821183436256,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Fact Sales.Paths[Lookup Match Output]"
+          TopLeft="800.860318998245,151.802614282488">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-620.263493398345,70.3019606862267"
+              Start="0,0"
+              End="-620.263493398345,62.8019606862267">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.1509803431133" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.1509803431133"
+                    Point2="0,35.1509803431133"
+                    Point3="-4,35.1509803431133" />
+                  <mssgle:LineSegment
+                    End="-616.263493398345,35.1509803431133" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-616.263493398345,35.1509803431133"
+                    Point2="-620.263493398345,35.1509803431133"
+                    Point3="-620.263493398345,39.1509803431133" />
+                  <mssgle:LineSegment
+                    End="-620.263493398345,62.8019606862267" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-358.323133417922,40.1509803431133,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Fact Sales.Paths[Derived Column Output1]"
+          TopLeft="799.949207639964,353.983006288311">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="70.6063497687752,0"
+              Start="0,0"
+              End="63.1063497687752,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="63.1063497687752,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Fact Sales.Paths[Derived Column Output2]"
+          TopLeft="972.955557408739,376.371241536625">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-540.590477310598,70.2313727230727"
+              Start="0,0"
+              End="-540.590477310598,62.7313727230727">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.1156863615363" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.1156863615363"
+                    Point2="0,35.1156863615363"
+                    Point3="-4,35.1156863615363" />
+                  <mssgle:LineSegment
+                    End="-536.590477310598,35.1156863615363" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-536.590477310598,35.1156863615363"
+                    Point2="-540.590477310598,35.1156863615363"
+                    Point3="-540.590477310598,39.1156863615363" />
+                  <mssgle:LineSegment
+                    End="-540.590477310598,62.7313727230727" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Fact Sales\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Fact Sales\Lookup DimDate">
+    design-time-name="Package\Load Fact Sales\Lookup FactCurrency">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[DimDate]</Value>
+          type="q3:string">[dbo].[FactCurrencyRate]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Fact Sales\Lookup DimProduct">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimProduct]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Fact Sales\Lookup DimCustomer">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimCustomer]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Fact Sales\Lookup DimSize">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimSize]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Fact Sales\Lookup DimSite">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimSite]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Fact Sales\Lookup DimCurrency">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimCurrency]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Fact Sales\Lookup CountryCode">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[Countries]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2854,7 +3248,7 @@ LEFT JOIN dbo.OrdersLinesDetails old
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -2864,7 +3258,30 @@ LEFT JOIN dbo.OrdersLinesDetails old
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Sales\Lookup DimCustomer">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimCustomer]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -2881,6 +3298,152 @@ LEFT JOIN dbo.OrdersLinesDetails old
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Sales\Lookup DimSite">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimSite]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Sales\Lookup DimDate">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimDate]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Sales\Lookup CountryCode">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Countries]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Sales\Lookup DimSize">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimSize]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Sales\Lookup DimProduct">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimProduct]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Sales\Lookup DimCurrency">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimCurrency]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fact Sales\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

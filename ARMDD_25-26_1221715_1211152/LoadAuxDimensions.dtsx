@@ -11,8 +11,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="32"
-  DTS:VersionGUID="{D66C15C5-76D5-4E53-AB0C-8F9BA608BA2C}">
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{FBCB1687-5A0B-4EDC-A0EB-1BB831D45B98}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -32,6 +32,7 @@
     <DTS:Executable
       DTS:refId="Package\Load Business Dimensions"
       DTS:CreationName="STOCK:SEQUENCE"
+      DTS:DelayValidation="True"
       DTS:Description="Sequence Container"
       DTS:DTSID="{F3E643C1-D05D-4F5B-B207-DFE7CBE072D7}"
       DTS:ExecutableType="STOCK:SEQUENCE"
@@ -42,6 +43,7 @@
         <DTS:Executable
           DTS:refId="Package\Load Business Dimensions\Execute SQL Task"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DelayValidation="True"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{E05275CC-6026-4AE6-BD9C-AC219EF79593}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
@@ -61,6 +63,7 @@
         <DTS:Executable
           DTS:refId="Package\Load Business Dimensions\Load DimShipping"
           DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{296603B5-88FC-406F-BF52-E52C97E994B6}"
           DTS:ExecutableType="Microsoft.Pipeline"
@@ -872,6 +875,7 @@
         <DTS:Executable
           DTS:refId="Package\Load Business Dimensions\Load DimSize"
           DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{5E30187D-EFE8-4A00-A5DB-80A925B162BB}"
           DTS:ExecutableType="Microsoft.Pipeline"
@@ -1630,6 +1634,7 @@
         <DTS:Executable
           DTS:refId="Package\Load Business Dimensions\LoadDimSite"
           DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{4CEF5E31-278C-4728-A6CC-DF92F549754F}"
           DTS:ExecutableType="Microsoft.Pipeline"
@@ -3270,6 +3275,10 @@ WHERE [SiteID] = ? AND [ExpiredDate] IS NULL</property>
           Size="141.6,41.6"
           Id="Package\Load Business Dimensions\Load DimSize"
           TopLeft="39.6000007450581,38.5294116152303" />
+        <NodeLayout
+          Size="136.8,41.6"
+          Id="Package\Load Business Dimensions\LoadDimSite"
+          TopLeft="431.342858616248,36.0941174969129" />
         <EdgeLayout
           Id="Package\Load Business Dimensions.PrecedenceConstraints[Constraint]"
           TopLeft="292.742858147925,79.2235292602782">
@@ -3292,10 +3301,6 @@ WHERE [SiteID] = ? AND [ExpiredDate] IS NULL</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="136.8,41.6"
-          Id="Package\Load Business Dimensions\LoadDimSite"
-          TopLeft="431.342858616248,36.0941174969129" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -3438,6 +3443,74 @@ WHERE [SiteID] = ? AND [ExpiredDate] IS NULL</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Business Dimensions\Load DimShipping\Slowly Changing Dimension">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionID&gt;{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[dbo].[DimShipping]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Country.Outputs[OLE DB Source Output].Columns[Code]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;CountryCode&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Country.Outputs[OLE DB Source Output].Columns[Name]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;CountryName&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Transform IsEuroZone.Outputs[Derived Column Output].Columns[EuroZoneTransformed]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;IsEuroZone&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Country.Outputs[OLE DB Source Output].Columns[VAT]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;VAT&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;true&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;false&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn /&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent /&gt;
+  &lt;ValueExpired /&gt;
+  &lt;StartDateColumn /&gt;
+  &lt;EndDateColumn /&gt;
+  &lt;DateVariable /&gt;
+  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Business Dimensions\Load DimShipping\Insert Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load Business Dimensions\Load DimShipping\Country">
     <Properties>
@@ -3627,74 +3700,6 @@ WHERE [SiteID] = ? AND [ExpiredDate] IS NULL</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Load Business Dimensions\Load DimSize\Size">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Business Dimensions\Load DimShipping\Slowly Changing Dimension">
-    <Properties>
-      <Property>
-        <Name>SCDMetadata</Name>
-        <Value
-          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SCDWizardMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;ConnectionID&gt;{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}&lt;/ConnectionID&gt;
-  &lt;TableName&gt;[dbo].[DimShipping]&lt;/TableName&gt;
-  &lt;InputToColumnsCollection&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Country.Outputs[OLE DB Source Output].Columns[Code]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;CountryCode&lt;/ColumnName&gt;
-      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
-      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Country.Outputs[OLE DB Source Output].Columns[Name]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;CountryName&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Transform IsEuroZone.Outputs[Derived Column Output].Columns[EuroZoneTransformed]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;IsEuroZone&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Country.Outputs[OLE DB Source Output].Columns[VAT]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;VAT&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-  &lt;/InputToColumnsCollection&gt;
-  &lt;GeneratedComponentsIdentificationStrings&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
-  &lt;/GeneratedComponentsIdentificationStrings&gt;
-  &lt;FailFixedAttribute&gt;true&lt;/FailFixedAttribute&gt;
-  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
-  &lt;UseStartEndDate&gt;false&lt;/UseStartEndDate&gt;
-  &lt;CurrentIndicatorColumn /&gt;
-  &lt;InferredIndicatorColumn /&gt;
-  &lt;ValueCurrent /&gt;
-  &lt;ValueExpired /&gt;
-  &lt;StartDateColumn /&gt;
-  &lt;EndDateColumn /&gt;
-  &lt;DateVariable /&gt;
-  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
-&lt;/SCDWizardMetadata&gt;</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Business Dimensions\Load DimShipping\Insert Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -4003,19 +4008,6 @@ WHERE [SiteID] = ? AND [ExpiredDate] IS NULL</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Business Dimensions\LoadDimSite\Sites">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Load Business Dimensions\LoadDimSite\Slowly Changing Dimension">
     <Properties>
       <Property>
@@ -4077,6 +4069,19 @@ WHERE [SiteID] = ? AND [ExpiredDate] IS NULL</property>
   &lt;DateVariable&gt;System::ContainerStartTime&lt;/DateVariable&gt;
   &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
 &lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Business Dimensions\LoadDimSite\Sites">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

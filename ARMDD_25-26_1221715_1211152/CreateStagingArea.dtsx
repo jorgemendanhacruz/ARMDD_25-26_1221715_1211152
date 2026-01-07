@@ -11,8 +11,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="CreateStagingArea"
   DTS:PackageType="5"
-  DTS:VersionBuild="18"
-  DTS:VersionGUID="{3C3F7B4A-5AAC-41F8-B572-FE917681F04E}">
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{DA16D5C4-99A4-4230-843B-C745FC8547C1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -68,6 +68,7 @@
     <DTS:Executable
       DTS:refId="Package\Create Staging Area DB"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DelayValidation="True"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{DE674D98-5477-429D-A041-C8120285BDE6}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
@@ -86,6 +87,7 @@
     <DTS:Executable
       DTS:refId="Package\Foreach Staging Create Tables"
       DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:DelayValidation="True"
       DTS:Description="Foreach Loop Container"
       DTS:DTSID="{81E15E61-444D-484F-90AD-AFB52805265C}"
       DTS:ExecutableType="STOCK:FOREACHLOOP"
@@ -113,6 +115,7 @@
         <DTS:Executable
           DTS:refId="Package\Foreach Staging Create Tables\Execute SA Script"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DelayValidation="True"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{4B179325-A6DD-47A5-A796-52FE955D35F9}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"

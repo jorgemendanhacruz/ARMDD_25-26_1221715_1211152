@@ -11,8 +11,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="LoadBigDimensions"
   DTS:PackageType="5"
-  DTS:VersionBuild="56"
-  DTS:VersionGUID="{D5D8328D-C742-47BE-B616-BD2B87F75647}">
+  DTS:VersionBuild="57"
+  DTS:VersionGUID="{5044379C-7F47-4663-A0B7-0DB1F746B0B4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -20,6 +20,7 @@
     <DTS:Executable
       DTS:refId="Package\Load Big Dimensions"
       DTS:CreationName="STOCK:SEQUENCE"
+      DTS:DelayValidation="True"
       DTS:Description="Sequence Container"
       DTS:DTSID="{FF16B421-1D19-41C0-967B-1B6C724C2E51}"
       DTS:ExecutableType="STOCK:SEQUENCE"
@@ -30,6 +31,7 @@
         <DTS:Executable
           DTS:refId="Package\Load Big Dimensions\Load DimCustomer"
           DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{395352C9-0E44-45C5-A4C5-99CC4B673870}"
           DTS:ExecutableType="Microsoft.Pipeline"
@@ -2526,6 +2528,7 @@ WHERE [CustomerID] = ? AND [ExpiredDate] IS NULL</property>
         <DTS:Executable
           DTS:refId="Package\Load Big Dimensions\Load DimProduct"
           DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{CF798E5A-D2D1-4EB1-9F43-546E285526F5}"
           DTS:ExecutableType="Microsoft.Pipeline"
@@ -5696,14 +5699,14 @@ where [refTable].[CategoryID] = ?</property>
                   startId="Package\Load Big Dimensions\Load DimProduct\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]" />
                 <path
                   refId="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output1]"
-                  endId="Package\Load Big Dimensions\Load DimProduct\Union All 1.Inputs[Union All Input 1]"
-                  name="Lookup Match Output"
-                  startId="Package\Load Big Dimensions\Load DimProduct\Lookup Box.Outputs[Lookup Match Output]" />
-                <path
-                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Union All Category.Inputs[Union All Input 1]"
                   name="Lookup Match Output"
                   startId="Package\Load Big Dimensions\Load DimProduct\Lookup Category.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output]"
+                  endId="Package\Load Big Dimensions\Load DimProduct\Union All 1.Inputs[Union All Input 1]"
+                  name="Lookup Match Output"
+                  startId="Package\Load Big Dimensions\Load DimProduct\Lookup Box.Outputs[Lookup Match Output]" />
                 <path
                   refId="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup No Match Output]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Box &quot;Unknown&quot;.Inputs[Derived Column Input]"
@@ -5731,14 +5734,14 @@ where [refTable].[CategoryID] = ?</property>
                   startId="Package\Load Big Dimensions\Load DimProduct\Products.Outputs[OLE DB Source Output]" />
                 <path
                   refId="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 11]"
-                  endId="Package\Load Big Dimensions\Load DimProduct\Set New Record Effective Date.Inputs[Derived Column Input]"
-                  name="Union All Output 1"
-                  startId="Package\Load Big Dimensions\Load DimProduct\Union All.Outputs[Union All Output 1]" />
-                <path
-                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 1]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
                   name="Union All Output 1"
                   startId="Package\Load Big Dimensions\Load DimProduct\Union All 1.Outputs[Union All Output 1]" />
+                <path
+                  refId="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 1]"
+                  endId="Package\Load Big Dimensions\Load DimProduct\Set New Record Effective Date.Inputs[Derived Column Input]"
+                  name="Union All Output 1"
+                  startId="Package\Load Big Dimensions\Load DimProduct\Union All.Outputs[Union All Output 1]" />
                 <path
                   refId="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 12]"
                   endId="Package\Load Big Dimensions\Load DimProduct\Lookup Box.Inputs[Lookup Input]"
@@ -5777,7 +5780,7 @@ where [refTable].[CategoryID] = ?</property>
           PanelSize="466.4,101.6"
           Size="466.4,144.8"
           Id="Package\Load Big Dimensions"
-          TopLeft="69.2857144332054,169.764705733548" />
+          TopLeft="69.2857144332054,168.999999851865" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -6168,6 +6171,119 @@ where [refTable].[CategoryID] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
+    design-time-name="Package\Load Big Dimensions\Load DimCustomer\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Countries]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionID&gt;{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[dbo].[DimCustomer]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[CountryName_STR]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Country&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[DateOfBirth_DT_DBDATE]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;CustomerBirthday&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Customer.Outputs[OLE DB Source Output].Columns[CustomerID]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;CustomerID&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[Gender_Transformed_STR]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Gender&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[GeographicRegion_UI1]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;GeographicRegion&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[IsVipCustomer_Transformed_STR]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;IsVipCustomer&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[Language_Transformed_STR]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Language&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Union All&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column 1&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command 1&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;true&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;true&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn /&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent /&gt;
+  &lt;ValueExpired /&gt;
+  &lt;StartDateColumn&gt;EffectiveDate&lt;/StartDateColumn&gt;
+  &lt;EndDateColumn&gt;ExpiredDate&lt;/EndDateColumn&gt;
+  &lt;DateVariable&gt;System::CreationDate&lt;/DateVariable&gt;
+  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Load Big Dimensions\Load DimCustomer\Customer">
     <Properties>
       <Property>
@@ -6388,7 +6504,7 @@ where [refTable].[CategoryID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output1]"
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output]"
           TopLeft="263.033333333333,656.699999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -6412,7 +6528,7 @@ where [refTable].[CategoryID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output]"
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Lookup Match Output1]"
           TopLeft="268.1,351.9">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -6674,7 +6790,7 @@ where [refTable].[CategoryID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 11]"
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 1]"
           TopLeft="242.5,1266.3">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -6708,7 +6824,7 @@ where [refTable].[CategoryID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 1]"
+          Id="Package\Load Big Dimensions\Load DimProduct.Paths[Union All Output 11]"
           TopLeft="242.5,859.899999999999">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -6893,119 +7009,6 @@ where [refTable].[CategoryID] = ?</property>
   &lt;DateVariable&gt;System::CreationDate&lt;/DateVariable&gt;
   &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
 &lt;/SCDWizardMetadata&gt;</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Big Dimensions\Load DimCustomer\Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[Countries]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Big Dimensions\Load DimCustomer\Slowly Changing Dimension">
-    <Properties>
-      <Property>
-        <Name>SCDMetadata</Name>
-        <Value
-          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SCDWizardMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;ConnectionID&gt;{74D7A728-AA52-4E2B-BDA5-1E081FA80AA9}&lt;/ConnectionID&gt;
-  &lt;TableName&gt;[dbo].[DimCustomer]&lt;/TableName&gt;
-  &lt;InputToColumnsCollection&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[CountryName_STR]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;Country&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[DateOfBirth_DT_DBDATE]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;CustomerBirthday&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;FixedAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Customer.Outputs[OLE DB Source Output].Columns[CustomerID]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;CustomerID&lt;/ColumnName&gt;
-      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
-      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[Gender_Transformed_STR]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;Gender&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[GeographicRegion_UI1]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;GeographicRegion&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[IsVipCustomer_Transformed_STR]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;IsVipCustomer&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-    &lt;InputColumnToDBColumn&gt;
-      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[Language_Transformed_STR]&lt;/IdentificationString&gt;
-      &lt;ColumnName&gt;Language&lt;/ColumnName&gt;
-      &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
-    &lt;/InputColumnToDBColumn&gt;
-  &lt;/InputToColumnsCollection&gt;
-  &lt;GeneratedComponentsIdentificationStrings&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;Derived Column&lt;/anyType&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;Union All&lt;/anyType&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;Derived Column 1&lt;/anyType&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
-    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command 1&lt;/anyType&gt;
-  &lt;/GeneratedComponentsIdentificationStrings&gt;
-  &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
-  &lt;FailChangeAttribute&gt;true&lt;/FailChangeAttribute&gt;
-  &lt;UseStartEndDate&gt;true&lt;/UseStartEndDate&gt;
-  &lt;CurrentIndicatorColumn /&gt;
-  &lt;InferredIndicatorColumn /&gt;
-  &lt;ValueCurrent /&gt;
-  &lt;ValueExpired /&gt;
-  &lt;StartDateColumn&gt;EffectiveDate&lt;/StartDateColumn&gt;
-  &lt;EndDateColumn&gt;ExpiredDate&lt;/EndDateColumn&gt;
-  &lt;DateVariable&gt;System::CreationDate&lt;/DateVariable&gt;
-  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
-&lt;/SCDWizardMetadata&gt;</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Big Dimensions\Load DimCustomer\Insert DimCustomer">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

@@ -11,8 +11,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="CreateDataMart"
   DTS:PackageType="5"
-  DTS:VersionBuild="11"
-  DTS:VersionGUID="{B02FDB55-C6E9-42F0-86ED-E4525026EDD5}">
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{58101F61-FC4B-4D44-91B6-91D3112AFB81}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -44,6 +44,7 @@
     <DTS:Executable
       DTS:refId="Package\Create DataMart DB"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DelayValidation="True"
       DTS:Description="Execute SQL Task"
       DTS:DTSID="{42fed1d6-5a8b-4897-857e-34569fca1da3}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
@@ -62,6 +63,7 @@
     <DTS:Executable
       DTS:refId="Package\Foreach DataMart Table Script"
       DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:DelayValidation="True"
       DTS:Description="Foreach Loop Container"
       DTS:DTSID="{7F1F665A-133C-42C8-B634-9531E42ABB79}"
       DTS:ExecutableType="STOCK:FOREACHLOOP"
@@ -89,6 +91,7 @@
         <DTS:Executable
           DTS:refId="Package\Foreach DataMart Table Script\Execute SQL Task"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DelayValidation="True"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{2BCD24E9-2FA7-45DC-A6E6-F8CE043A7EDA}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"

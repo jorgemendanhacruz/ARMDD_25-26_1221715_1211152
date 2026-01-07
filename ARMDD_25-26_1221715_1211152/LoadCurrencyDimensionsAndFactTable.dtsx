@@ -11,8 +11,8 @@
   DTS:LocaleID="2070"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="37"
-  DTS:VersionGUID="{3F15CEBA-DB5C-4A0E-8659-F7660DF32DC3}">
+  DTS:VersionBuild="38"
+  DTS:VersionGUID="{8B35D616-568A-49C5-A534-14F4CFDAE054}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -175,6 +175,7 @@
     <DTS:Executable
       DTS:refId="Package\DimCurrency"
       DTS:CreationName="STOCK:SEQUENCE"
+      DTS:DelayValidation="True"
       DTS:Description="Sequence Container"
       DTS:DTSID="{12748CA9-D7C3-4982-A159-A73ABE071EE6}"
       DTS:ExecutableType="STOCK:SEQUENCE"
@@ -185,6 +186,7 @@
         <DTS:Executable
           DTS:refId="Package\DimCurrency\IsDimCurrencyEmpty?"
           DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{89FA9788-D61D-4A30-97CC-FB3EF33DD1BC}"
           DTS:ExecutableType="Microsoft.Pipeline"
@@ -387,6 +389,7 @@
         <DTS:Executable
           DTS:refId="Package\DimCurrency\LoadDimCurrency"
           DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{7767ACEF-BB0D-4376-82A6-4F5FD76299DA}"
           DTS:ExecutableType="Microsoft.Pipeline"
@@ -744,6 +747,7 @@
     <DTS:Executable
       DTS:refId="Package\FactCurrency"
       DTS:CreationName="STOCK:SEQUENCE"
+      DTS:DelayValidation="True"
       DTS:Description="Sequence Container"
       DTS:DTSID="{DA4F2F4E-A151-40ED-B6D3-7181AFD3DCB3}"
       DTS:ExecutableType="STOCK:SEQUENCE"
@@ -754,6 +758,7 @@
         <DTS:Executable
           DTS:refId="Package\FactCurrency\Execute SQL Task"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DelayValidation="True"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{78258241-51AA-4560-8F36-1BC00302D40C}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
@@ -771,6 +776,7 @@
         <DTS:Executable
           DTS:refId="Package\FactCurrency\Load FactCurrencyTable"
           DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{6B61C705-7A5E-48C2-A860-73F39B9C6DD7}"
           DTS:ExecutableType="Microsoft.Pipeline"
@@ -1898,13 +1904,13 @@ where [refTable].[CurrencyCode] = ?</property>
           Id="Package\DimCurrency"
           TopLeft="72.8571430122365,57.3529411261985" />
         <NodeLayout
-          Size="191.2,41.6"
-          Id="Package\FactCurrency\Load FactCurrencyTable"
-          TopLeft="56.4571446087893,101.635293844837" />
-        <NodeLayout
           Size="162.4,41.6"
           Id="Package\FactCurrency\Execute SQL Task"
           TopLeft="68.5142867695313,5.5" />
+        <NodeLayout
+          Size="191.2,41.6"
+          Id="Package\FactCurrency\Load FactCurrencyTable"
+          TopLeft="56.4571446087893,101.635293844837" />
         <EdgeLayout
           Id="Package\FactCurrency.PrecedenceConstraints[Constraint]"
           TopLeft="150.88571568916,47.1">
